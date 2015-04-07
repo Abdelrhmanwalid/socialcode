@@ -4,6 +4,6 @@ import socialcode.model.User;
 
 public interface UserDao {
 
-	User findByUserId(int id);
+	User findByUserEmail(String email);
 
 }

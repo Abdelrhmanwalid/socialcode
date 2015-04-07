@@ -18,12 +18,12 @@ public class UserDaoImpl implements UserDao {
 	private SessionFactory sessionFactory;
  
 	@SuppressWarnings("unchecked")
-	public User findByUserId(int id) {
+	public User findByUserEmail(String id) {
  
 		List<User> users = new ArrayList<User>();
  
 		users = sessionFactory.getCurrentSession()
-			.createQuery("from User where id=?")
+			.createQuery("from User where email=?")
 			.setParameter(0, id)
 			.list();
  

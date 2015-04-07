@@ -16,8 +16,8 @@ import javax.persistence.Table;
 @Table(name = "users")
 public class User {
 	@Id
-	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id", unique = true, nullable = false, length = 45)
 	private int id;
 
 	private String first_name;
@@ -39,7 +39,6 @@ public class User {
 	}
 
 	@Id
-	@Column(name = "id", unique = true, nullable = false, length = 45)
 	public int getId() {
 		return id;
 	}
@@ -80,5 +79,6 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 
 }
