@@ -5,7 +5,10 @@
          version="2.5">
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>/META-INF/applicationContext.xml</param-value>
+        <param-value>
+        	/META-INF/applicationContext.xml,
+        	classpath:/jpaContext.xml 
+        </param-value>
     </context-param>
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
