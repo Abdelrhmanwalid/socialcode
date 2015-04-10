@@ -16,17 +16,16 @@ public class Code {
     private String output;
     private boolean runnable;
     @OneToOne
-    @JoinColumn(nullable = true)
-    private Code parent_id;
+    private Code parent;
     @OneToOne
     private Post post;
 
-    public Code getParent_id() {
-        return parent_id;
+    public Code getParent() {
+        return parent;
     }
 
-    public void setParent_id(Code parent_id) {
-        this.parent_id = parent_id;
+    public void setParent(Code parent) {
+        this.parent = parent;
     }
 
     public Post getPost() {

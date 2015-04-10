@@ -1,30 +1,19 @@
 package socialcode.model;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "Tutorials")
-public class Toutrial {
+public class Tutorial {
 
     @Id
     @GeneratedValue
     private int id;
     private String title;
     private String text;
-    @Column(nullable = false)
-    private int post_id;
-    @OneToMany
-    List<Tag> tags = new ArrayList<Tag>();
-
-    public List<Tag> getTags() {
-        return tags;
-    }
-
-    public void setTags(List<Tag> tags) {
-        this.tags = tags;
-    }
+    @OneToOne
+    @JoinColumn(nullable = false)
+    private Post post;
 
     public int getId() {
         return id;
@@ -50,11 +39,11 @@ public class Toutrial {
         this.text = text;
     }
 
-    public int getPost_id() {
-        return post_id;
+    public Post getPost() {
+        return post;
     }
 
-    public void setPost_id(int post_id) {
-        this.post_id = post_id;
+    public void setPost(Post post) {
+        this.post = post;
     }
 }
