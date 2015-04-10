@@ -1,19 +1,29 @@
 package socialcode.model;
 
+
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Posts")
-public class Post {
+@Table(name = "followers")
+public class Follower {
 
     @Id
     @GeneratedValue
     private int id;
-    @Column(columnDefinition = "varchar(10)")
-    private String type;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(nullable = false)
     private User user;
+    @OneToOne
+    @JoinColumn(nullable = false)
+    private User follower;
+
+    public User getFollower() {
+        return follower;
+    }
+
+    public void setFollower(User follower) {
+        this.follower = follower;
+    }
 
     public User getUser() {
         return user;
@@ -29,13 +39,5 @@ public class Post {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 }

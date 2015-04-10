@@ -1,8 +1,6 @@
 package socialcode.model;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -11,14 +9,10 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", unique = true, nullable = false, length = 45)
     private int id;
-
     private String first_name;
     private String last_name;
     private String password;
     private String email;
-    @OneToMany
-    @JoinTable(name = "Followers")
-    private List<User> followers = new ArrayList<User>();
 
     public User() {
     }
@@ -31,14 +25,6 @@ public class User {
         this.last_name = last_name;
         this.password = password;
         this.email = email;
-    }
-
-    public List<User> getFollowers() {
-        return followers;
-    }
-
-    public void setFollowers(List<User> followers) {
-        this.followers = followers;
     }
 
     public int getId() {
