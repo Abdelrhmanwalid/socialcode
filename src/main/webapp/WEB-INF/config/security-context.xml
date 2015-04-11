@@ -9,18 +9,19 @@
 
 	<http auto-config="true">
 		<intercept-url pattern="/login*" access="isAnonymous()" />
+		<intercept-url pattern="/register" access="isAnonymous()" />
 		<intercept-url pattern="/**" access="isAuthenticated()" />
 
 		<!-- access denied page -->
 		<access-denied-handler error-page="/403" />
 
-		<form-login login-page="/login" default-target-url="/"
+		<form-login login-page="/login2" default-target-url="/"
 			authentication-failure-url="/login?error" username-parameter="email"
 			password-parameter="password" always-use-default-target="true" />
 		<logout logout-success-url="/login?logout" invalidate-session="true"
 			logout-url="/logout" />
-		<!-- enable csrf protection -->
-		<!-- <csrf /> -->
+		 <!--enable csrf protection -->
+		 <csrf />
 	</http>
 
 	<!-- Select users and user_roles from database -->

@@ -9,7 +9,9 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.1.xsd
 		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa-1.8.xsd">
 
-    <context:annotation-config/>
+    <context:annotation-config />
+    <context:component-scan base-package="socialcode"/>
+
     <jpa:repositories base-package="socialcode.repository" />
 
     <bean
@@ -29,7 +31,7 @@
         <property name="jpaPropertyMap">
             <map>
                 <entry key="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect"/>
-                <entry key="hibernate.hbm2ddl.auto" value="create"/>
+                <entry key="hibernate.hbm2ddl.auto" value="none"/>
                 <entry key="hibernate.format_sql" value="true"/>
             </map>
         </property>

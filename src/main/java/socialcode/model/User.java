@@ -12,7 +12,18 @@ public class User {
     private String first_name;
     private String last_name;
     private String password;
+    @Column(unique = true)
     private String email;
+    @Column(name = "profile_picture")
+    private String profilePicture;
+
+    public String getProfilePicture() {
+        return profilePicture;
+    }
+
+    public void setProfilePicture(String profilePicture) {
+        this.profilePicture = profilePicture;
+    }
 
     public User() {
     }
