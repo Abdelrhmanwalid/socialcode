@@ -8,8 +8,8 @@
     </head>
 
     <body>
-        <H1>Login</H1>
-        <form id="form" action="<c:url value='/login2'/>" method="POST">
+        <H1>Login (╯°□°)╯︵ ┻━┻</H1>
+        <form id="form" action="<c:url value='/login'/>" method="POST">
 
             <c:if test="${not empty param.err}">
                 <div><c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}"/></div>

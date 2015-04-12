@@ -6,7 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import socialcode.model.User;
 import socialcode.repository.UserRepository;
 
-@Service("userService")
+@Service("UserService")
 public class UserServiceImpl implements UserService {
 
     @Autowired
@@ -14,7 +14,6 @@ public class UserServiceImpl implements UserService {
 
     @Transactional
     public User save(User user) {
-        System.out.println("service save");
         return userRepository.save(user);
     }
 }

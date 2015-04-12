@@ -7,7 +7,7 @@ import socialcode.model.Post;
 
 import java.util.List;
 
-@Repository("postRepository")
+@Repository("PostRepository")
 public interface PostRepository extends JpaRepository<Post, Integer> {
 
     @Query("select p from Post p where p.user.id = ?1")

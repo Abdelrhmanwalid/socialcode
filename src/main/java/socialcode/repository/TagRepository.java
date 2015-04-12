@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import socialcode.model.Tag;
 
-@Repository("tagRepository")
+@Repository("TagRepository")
 public interface TagRepository extends JpaRepository<Tag, Integer> {
 
     @Query("select t from Tag t where t.tag = ?1")

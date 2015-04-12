@@ -17,16 +17,16 @@ public class LoginController {
 	@Autowired
 	private UserService userService;
 
-	@RequestMapping(value = "/login2", method = RequestMethod.GET)
-	public String login(@ModelAttribute("user")User user) {
-		return "login";
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public ModelAndView login(@ModelAttribute("user")User user) {
+		return new ModelAndView("login");
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String RegisterUser(@ModelAttribute("user")User user) {
+	public ModelAndView RegisterUser(@ModelAttribute("user")User user) {
 		userService.save(user);
 		System.out.println("controller save");
-		return "redirect:home";
+		return new ModelAndView("redirect:home");
 	}
 
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
