@@ -3,6 +3,7 @@ package socialcode.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,7 +16,7 @@ public class LoginController {
 	@Autowired
 	private UserService userService;
 
-	@RequestMapping(value = "/login2", method = RequestMethod.GET)
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(@ModelAttribute("user")User user) {
 		return "login";
 	}
@@ -34,7 +35,7 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
-	public String Register(@ModelAttribute("user")User user){
+	public String Register(ModelMap modelMap){
 		return "register";
 	}
 }
