@@ -1,8 +1,9 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<html>
-<body>
-	<h3>messages, whatever</h3>
-	<a href="<c:url value="/logout" />">Logout</a>
+<br/>
+<br/>
+<br/>
 
-</body>
-</html>
+
+<br/>
+	<h1>HOME sweet home.</h1>
+
+

@@ -1,38 +1,33 @@
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page pageEncoding="UTF-8" %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ page language="java" import="javax.servlet.jsp.PageContext" %>
+<!DOCTYPE html>
 <html>
-<head>
-    <title>Login</title>
-</head>
+    <head>
+        <title>Spring Security Form Login Tutorial</title>
+    </head>
 
-<body>
-<h1>Login</h1>
-<h1>(╯°□°)╯︵ ┻━┻</h1>
-<c:url var="loginUrl" value="/j_spring_security_check"/>
-<form action="${loginUrl}" method="post">
+    <body>
+        <H1>Login</H1>
+        <form id="form" action="<c:url value='/login2'/>" method="POST">
 
+            <c:if test="${not empty param.err}">
+                <div><c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}"/></div>
+            </c:if>
+            <c:if test="${not empty param.out}">
+                <div>You've logged out successfully.</div>
+            </c:if>
+            <c:if test="${not empty param.time}">
+                <div>You've been logged out due to inactivity.</div>
+            </c:if>
 
-    <p>
-        <label for="j_username">User:</label>
-    </p>
-    <input type="text" id="j_username" name="j_username"/>
+            Username:<br>
+            <input type="email" name="email" value=""/><br><br>
+            Password:<br>
+            <input type="password" name="password" value=""/>
 
-    <p>
-        <label for="j_password">Password:</label>
-    </p>
-    <input type="password" id="j_password" name="j_password">
+            <input value="Login" name="submit" type="submit"/>
 
-    <p>
-        <label for="_spring_security_remember_me">Remember Me</label>
-    </p>
-    <input type="checkbox" id="_spring_security_remember_me"
-           name="_spring_security_remember_me"/>
-
-    <div>
-        <input name="submit" type="submit"/>
-    </div>
-</form>
-
-</body>
+        </form>
+    </body>
 </html>

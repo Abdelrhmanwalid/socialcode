@@ -1,0 +1,119 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+
+body{
+    font-family: 'PT+Sans','Montserrat', sans-serif;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    background: none repeat scroll 0% 0% #white;
+    
+}
+
+#sidebar-main.shorty {
+/*    overflow-y: scroll;*/
+}
+
+#sidebar-main{
+    background: none repeat scroll 0% 0% #232323;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    top: 0px;
+    z-index: 99999;
+    width: 200px;
+}
+#site-logo{
+    padding-bottom:20px;
+}
+#site-logo a h1{
+    text-align: center;
+    font-weight: 500;
+    color: #FFF;
+    font-size: 25px;
+    margin-bottom: 0px;
+}
+#site-logo a p{
+    text-align: center;
+    color: #FFF;
+    font-size: 16px;
+    margin-bottom: 0px;
+}
+.menu-search {
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.menu-search span {
+    position: absolute;
+    right: 25px;
+    top: 13px;
+    font-size: 15px;
+    color: #999;
+}
+
+.menu-search input {
+    border: 0px none;
+    outline: 0px none;
+    padding: 10px;
+    margin-left: 5%;
+    border-radius: 3px;
+    background: none repeat scroll 0% 0% #333;
+    color: #EEE;
+    width: 90%;
+    transition: all 0.3s ease 0s;
+}
+
+.main-nav {
+    position: relative;
+}
+
+.main-nav .nav-text {
+    list-style: outside none none;
+    margin: 0px;
+    padding-left: 0px;
+}
+
+.main-nav .nav-text a {
+    color: #DEDEDE;
+    display: block;
+    font-weight: 300;
+    padding: 2px 30px;
+    font-size: 17px;
+    transition: all 0.3s ease 0s;
+}
+
+a:focus {
+    outline: thin dotted;
+    outline-offset: -2px;
+}
+
+.main-nav .nav-text li.divider {
+    color: #999;
+    font-weight: 700;
+    text-transform: uppercase;
+    display: block;
+    padding: 20px 30px 0px;
+    font-size: 12px;
+}
+
+.main-nav .nav-announcement a {
+    background: none repeat scroll 0% 0% #111;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-radius: 5px;
+    font-size: 14px;
+    padding: 10px;
+}
+
+#site-main, .single #site-main {
+}
+
+pre {
+    padding :0 ;
+}
+code {-moz-tab-size: 4;} /* Code for Firefox */
+code {-o-tab-size: 4;} /* Code for Opera 10.6-12.1 */
+code {tab-size: 4;}
+
+.code-title span  {
+    font-size : 14px;
+}
