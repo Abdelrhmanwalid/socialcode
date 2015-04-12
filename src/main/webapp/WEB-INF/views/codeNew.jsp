@@ -3,29 +3,21 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <form:form commandName="code" class="form-horizontal">
-
+                <div class="form-group">
             <label class="col-sm-3 control-label">Title</label>
-
             <div class="col-sm-9">
                 <form:input path="title" type="text" name="title" class="form-control" placeholder="Title" />
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-3 control-label">Programming language</label>
-
             <div class="col-sm-9">
-                <form:select name="lang" class="form-control" path="language" >
-                    <option value="C++">C++</option>
-                    <option value="Java">Java</option>
-                    <option value="Python">Python</option>
-                    <option value="PHP">PHP</option>
-                </form:select>
+                <form:select name="lang" class="form-control" items="${languages}" path="language" />
             </div>
         </div>
 
         <div class="form-group">
             <label class="col-sm-3 control-label">Code</label>
-
             <div class="col-sm-9">
                 <form:textarea path="code" class="form-control" rows="20"/>
             </div>
@@ -55,7 +47,6 @@
 
         <div class="form-group">
             <label class="col-sm-3 control-label">Input</label>
-
             <div class="col-sm-9">
                 <form:textarea path="input" class="form-control" rows="5"/>
             </div>
