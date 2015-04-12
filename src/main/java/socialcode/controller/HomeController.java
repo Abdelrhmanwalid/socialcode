@@ -11,7 +11,7 @@ public class HomeController {
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public ModelAndView handleRequest() {
 
-		return new ModelAndView("home");
+		return new ModelAndView("home").addObject("navColor","home");
 	}
 
 }

@@ -14,16 +14,13 @@ public class LoadView extends InternalResourceView {
 	protected void renderMergedOutputModel(Map<String, Object> model,
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
+		
+		exposeModelAsRequestAttributes(model,request);
+		
 		String dispatcherPath = prepareForRendering(request, response);
 
-		if(dispatcherPath.substring(
-				dispatcherPath.lastIndexOf("/") + 1).equalsIgnoreCase("register")){
-			System.out.println("222222222222222222222222222222222");
-		}
-		
 		request.setAttribute("partial", dispatcherPath.substring(
 				dispatcherPath.lastIndexOf("/") + 1));
-		
 		
 		RequestDispatcher requestDispatcher = request
 				.getRequestDispatcher("/WEB-INF/views/template.jsp");

@@ -7,13 +7,26 @@
                     </div>
                     <div id="navbar" class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="home.html"><i class="fa  fa-home"></i><span class="hidden-sm"> Home</span></a></li>
-                            <li><a href="profile.html"><i class="fa fa-user"></i>
+                            <li <% if(request.getAttribute("navColor")!=null && request.getAttribute("navColor").equals("home")){ %>
+                             class="active"
+                            <% } %>
+                            ><a href="home.html"><i class="fa  fa-home"></i><span class="hidden-sm"> Home</span></a></li>
+                            <li <% if(request.getAttribute("navColor")!=null && request.getAttribute("navColor").equals("profile")){ %>
+                             class="active"
+                            <% } %>
+                            ><a href="profile.html"><i class="fa fa-user"></i>
                                 <span class="hidden-sm"> Profile</span>
                                 </a></li>
-                            <li><a href="new-code.html"><i class="fa fa-code"></i>
-                                <span class="hidden-sm"> New code</span></a></li>
-                            <li><a href="new-tutorial.html"><i class="fa fa-pencil"></i><span class="hidden-sm"> New tutorial</span></a></li>
+                            <li <% if(request.getAttribute("navColor")!=null && request.getAttribute("navColor").equals("code")){ %>
+                             class="active"
+                            <% } %>
+                            >
+                            <a href="newCode"><i class="fa fa-code"></i>
+                                <span class="hidden-sm"> Code </span></a></li>
+                            <li <% if(request.getAttribute("navColor")!=null && request.getAttribute("navColor").equals("tutorial")){ %>
+                             class="active"
+                            <% } %>
+                            ><a href="new-tutorial.html"><i class="fa fa-pencil"></i><span class="hidden-sm"> Tutorial</span></a></li>
                         </ul>
                         <form class="navbar-form navbar-left" role="search">
                             <div class="form-group">

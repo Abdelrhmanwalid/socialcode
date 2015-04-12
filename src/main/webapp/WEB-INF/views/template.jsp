@@ -14,7 +14,6 @@
  <jsp:include page="${partial}" />
 
 
-
 <jsp:include page="include/footer.jsp" />
 <jsp:include page="include/libs.jsp" />
 </body>
