@@ -1,12 +1,11 @@
 package socialcode.view;
 
-import java.util.Map;
+import org.springframework.web.servlet.view.InternalResourceView;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.springframework.web.servlet.view.InternalResourceView;
+import java.util.Map;
 
 public class LoadView extends InternalResourceView {
 
@@ -15,7 +14,7 @@ public class LoadView extends InternalResourceView {
 			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		
-		exposeModelAsRequestAttributes(model,request);
+		exposeModelAsRequestAttributes(model, request);
 		
 		String dispatcherPath = prepareForRendering(request, response);
 
@@ -24,8 +23,9 @@ public class LoadView extends InternalResourceView {
 		
 		RequestDispatcher requestDispatcher = request
 				.getRequestDispatcher("/WEB-INF/views/template.jsp");
-		
+
 		requestDispatcher.include(request, response);
+		response.setContentType("text/HTML");
 
 	}
 	

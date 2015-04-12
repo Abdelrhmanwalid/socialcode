@@ -9,9 +9,10 @@ public class Code {
     @Id
     @GeneratedValue
     private int id;
+    private String title;
     private String language;
     private String code;
-    private String type;
+    private boolean onProfile;
     private String input;
     private String output;
     private boolean runnable;
@@ -19,6 +20,14 @@ public class Code {
     private Code parent;
     @OneToOne
     private Post post;
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
     public Code getParent() {
         return parent;
@@ -60,12 +69,12 @@ public class Code {
         this.code = code;
     }
 
-    public String getType() {
-        return type;
+    public boolean isOnProfile() {
+        return onProfile;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setOnProfile(boolean onProfile) {
+        this.onProfile = onProfile;
     }
 
     public String getInput() {

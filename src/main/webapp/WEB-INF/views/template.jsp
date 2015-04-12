@@ -8,7 +8,7 @@
 <jsp:include page="include/head.jsp" />
 <body>
 <jsp:include page="include/header.jsp" />
-	
+
 
 
  <jsp:include page="${partial}" />
