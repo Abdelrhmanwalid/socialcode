@@ -19,4 +19,5 @@ public class CodeServiceImpl implements CodeService {
     public Code findById(int id) {
         return codeRepository.findOne(id);
     }
+
 }

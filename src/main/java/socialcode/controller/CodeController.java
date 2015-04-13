@@ -1,6 +1,12 @@
 package socialcode.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -8,12 +14,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import socialcode.AppConfig;
 import socialcode.helper.ProgramingLanguages;
+import socialcode.ideone.api.service.RunCodeThread;
 import socialcode.model.Code;
 import socialcode.service.CodeService;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 public class CodeController {
@@ -25,7 +31,7 @@ public class CodeController {
 	public ModelAndView newCode(ModelMap modelMap) {
 
 		List<String> languages = new ArrayList<String>();
-		for (ProgramingLanguages lang : ProgramingLanguages.values()){
+		for (ProgramingLanguages lang : ProgramingLanguages.values()) {
 			languages.add(lang.toString());
 		}
 
@@ -37,10 +43,26 @@ public class CodeController {
 
 	}
 
-
 	@RequestMapping(value = "newCode", method = RequestMethod.POST)
-	public String addNewCode(@ModelAttribute("code")Code code) {
+	public String addNewCode(@ModelAttribute("code") Code code) {
 		codeService.save(code);
+
+		if (code.isRunnable()) {
+			ApplicationContext context = new AnnotationConfigApplicationContext(
+					AppConfig.class);
+			ThreadPoolTaskExecutor taskExecutor = (ThreadPoolTaskExecutor) context
+					.getBean("codeExecutor");
+			RunCodeThread runCode = (RunCodeThread) context
+					.getBean("runCodeThread");
+			runCode.setCode(code);
+			runCode.setCodeService(codeService);
+			runCode.setLang(new socialcode.ideone.api.service.Ideone()
+					.getLanguageIdByName(code.getLanguage()));
+			runCode.setSource(code.getCode());
+			runCode.setInput(code.getInput());
+			taskExecutor.execute(runCode);
+		}
+
 		int id = code.getId();
 		String codePage = "/code/" + id;
 		return "redirect:" + codePage;
