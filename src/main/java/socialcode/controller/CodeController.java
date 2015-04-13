@@ -69,10 +69,15 @@ public class CodeController {
 
 	}
 
+	@RequestMapping(value = "code")
+	public ModelAndView codes() {
+		return new ModelAndView("codes").addObject("navColor","code");
+	}
+	
 	@RequestMapping(value = "code/{$id}")
-	public String code(@PathVariable("$id") String id) {
+	public ModelAndView code(@PathVariable("$id") String id) {
 		// TODO : get code form database and send it back to the view
 		// temporarily redirect to new code page until view code page is ready
-		return "redirect:/newCode";
+		return new ModelAndView("code").addObject("navColor","code");
 	}
 }

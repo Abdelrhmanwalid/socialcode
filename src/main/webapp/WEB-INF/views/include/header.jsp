@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <header id="header" class="header headroom">
             <!-- Fixed navbar -->
             <nav class="navbar">
@@ -21,7 +23,7 @@
                              class="active"
                             <% } %>
                             >
-                            <a href="newCode"><i class="fa fa-code"></i>
+                            <a href="<c:url value="/code" />"><i class="fa fa-code"></i>
                                 <span class="hidden-sm"> Code </span></a></li>
                             <li <% if(request.getAttribute("navColor")!=null && request.getAttribute("navColor").equals("tutorial")){ %>
                              class="active"
