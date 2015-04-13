@@ -15,6 +15,7 @@ public class Code {
     private boolean onProfile;
     private String input;
     private String output;
+    private String status;
     private boolean runnable;
     @OneToOne
     private Code parent;
@@ -99,5 +100,13 @@ public class Code {
 
     public void setRunnable(boolean runnable) {
         this.runnable = runnable;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
