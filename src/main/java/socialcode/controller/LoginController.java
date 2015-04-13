@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-
 import socialcode.model.User;
 import socialcode.service.UserService;
 
@@ -24,6 +23,9 @@ public class LoginController {
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public ModelAndView RegisterUser(@ModelAttribute("user")User user) {
+//		Security-context.xml -> password-encoder
+//		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+//		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 		userService.save(user);
 		System.out.println("controller save");
 		return new ModelAndView("redirect:home");
