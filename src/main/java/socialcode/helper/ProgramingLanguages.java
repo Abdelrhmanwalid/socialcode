@@ -12,6 +12,6 @@ public enum ProgramingLanguages {
 
     @Override
     public String toString() {
-        return string;
+        return string.toLowerCase();
     }
 }

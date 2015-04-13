@@ -125,6 +125,7 @@ public class RunCodeThread implements Runnable {
 				handle("echo2", out);
 
 				code.setOutput(out);
+				System.out.println(out);
 				codeService.save(code);
 			}
 		} catch (Exception e) {

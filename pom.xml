@@ -111,6 +111,21 @@
 			<artifactId>cglib</artifactId>
 			<version>2.2.2</version>
 		</dependency>
+		<!--<dependency>-->
+			<!--<groupId>org.apache.axis</groupId>-->
+			<!--<artifactId>axis</artifactId>-->
+			<!--<version>1.4</version>-->
+		<!--</dependency>-->
+		<!--<dependency>-->
+			<!--<groupId>commons-discovery</groupId>-->
+			<!--<artifactId>commons-discovery</artifactId>-->
+			<!--<version>20040218.194635</version>-->
+		<!--</dependency>-->
+		<!--<dependency>-->
+			<!--<groupId>org.gatein.common</groupId>-->
+			<!--<artifactId>common-logging</artifactId>-->
+			<!--<version>2.2.2.Final</version>-->
+		<!--</dependency>-->
 	</dependencies>
 	<build>
 		<finalName>SocialCode</finalName>

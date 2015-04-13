@@ -16,4 +16,9 @@ public class UserServiceImpl implements UserService {
     public User save(User user) {
         return userRepository.save(user);
     }
+
+    @Transactional
+    public User findByUserEmail(String email) {
+        return userRepository.findByUserEmail(email);
+    }
 }

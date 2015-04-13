@@ -1,38 +1,18 @@
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="container">
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
 			<div style="font-size: 20px; float: right; padding: 20px;">
 				<a href=""><i class="fa fa-code-fork"></i> Fork</a> (0)
 			</div>
-			<h2 class="code-title" style="padding-left: 15px;">Code for fun
+			<h2 class="code-title" style="padding-left: 15px;">${code.title}
 			</h2>
 
 			<div class="col-md-12">
 
 				<div>
 					<pre>
-						<code class="c++">#include <iostream>
-#include <math.h>
-using namespace std;
-
-int main() {
-
-	int n, m;
-	while (cin >> n >> m && n+m!=0) {
-		int x = n , y = m;
-		if (n > m)
-			swap(n, m);
-		if (n == 1) {
-        while (cin >> n >> m && n+m!=0) {
-		int x = n , y = m;
-		if (n > m)
-			swap(n, m);
-		if (n == 1) {
-        
-
-
-						</code>
+						<code class="${code.language}">${code.code}</code>
 					</pre>
 				</div>
 			</div>
@@ -43,17 +23,18 @@ int main() {
 			<div class="row">
 				<label class="col-md-2">Coder</label>
 				<div class="col-md-10">
-					<a href="">Mohamed Mohamed</a>
+					<a href="">${code.user.first_name} ${code.user.last_name}</a>
 				</div>
 			</div>
 			<div class="row">
 				<label class="col-md-2">Programming Language</label>
 				<div class="col-md-10">
-					<a href="">C++</a>
+					<a href="">${code.language}</a>
 				</div>
 			</div>
 
 		</div>
+		<c:if test="${code.runnable}" >
 		<div role="tabpanel">
 			<!-- Nav tabs -->
 			<ul class="nav nav-tabs" role="tablist">
@@ -69,10 +50,11 @@ int main() {
 			<div class="tab-content"
 				style="min-height: 200px; border-right: 1px solid #DDD; border-left: 1px solid #DDD; border-bottom: 1px solid #DDD; padding: 30px;">
 				<div role="tabpanel" class="tab-pane active" id="input">
-					5<br>5 3<br>5<br>4 4<br>3<br>
+					${code.input}
 				</div>
-				<div role="tabpanel" class="tab-pane" id="output">2</div>
+				<div role="tabpanel" class="tab-pane" id="output">${code.output}</div>
 			</div>
 		</div>
+		</c:if>
 	</div>
 </div>

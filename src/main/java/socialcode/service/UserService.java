@@ -6,4 +6,6 @@ import socialcode.model.User;
 public interface UserService {
 
     User save(User user);
+
+    User findByUserEmail(String email);
 }
