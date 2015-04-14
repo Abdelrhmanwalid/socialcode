@@ -20,15 +20,18 @@ public class CodeServiceImpl implements CodeService {
 
     public Code save(Code code) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String username = authentication.getName();
-        User user = userService.findByUserEmail(username);
-        code.setUser(user);
-        if (code.isOnProfile()){
-            Post post = new Post();
-            post.setType(PostTypes.CODE.toString());
-            post.setUser(user);
-        } if (code.isRunnable()) {
-            // TODO : move run here from controller
+        if (authentication != null) {
+            String username = authentication.getName();
+            User user = userService.findByUserEmail(username);
+            code.setUser(user);
+            if (code.isOnProfile()) {
+                Post post = new Post();
+                post.setType(PostTypes.CODE.toString());
+                post.setUser(user);
+            }
+            if (code.isRunnable()) {
+                // TODO : move run here from controller
+            }
         }
         codeRepository.save(code);
         return code;
@@ -36,6 +39,17 @@ public class CodeServiceImpl implements CodeService {
 
     public Code findById(int id) {
         return codeRepository.findOne(id);
+    }
+
+    public Code fork(int id){
+        Code code, parent;
+        parent = findById(id);
+//        code = new Code();
+        code = parent;
+        code.setParent(parent);
+        System.out.print("service  ");
+        System.out.println(code.getParent().getId());
+        return code;
     }
 
 }
