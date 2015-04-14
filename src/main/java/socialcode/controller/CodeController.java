@@ -120,7 +120,6 @@ public class CodeController {
 	@RequestMapping(value = "code/{$id}/fork", method = RequestMethod.GET)
 	public ModelAndView codeFork(@PathVariable("$id") int id, ModelMap modelMap) {
 		Code code = codeService.fork(id);
-		codeService.save(code);
 		List<String> languages = new ArrayList<String>();
 		languages.add(code.getLanguage());
 		modelMap.addAttribute("code", code);
