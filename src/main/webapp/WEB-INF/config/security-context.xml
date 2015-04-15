@@ -8,6 +8,9 @@
 						http://www.springframework.org/schema/beans/spring-beans-4.1.xsd">
 
 	<http auto-config="true">
+		<headers>
+	        <frame-options policy="SAMEORIGIN"/>
+	    </headers>
 		<intercept-url pattern="/login*" access="isAnonymous()" />
 		<intercept-url pattern="/register" access="isAnonymous()" />
 		<intercept-url pattern="/**" access="isAuthenticated()" />

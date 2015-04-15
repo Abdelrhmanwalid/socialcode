@@ -11,7 +11,7 @@ public class TutorialController {
 
     @RequestMapping(value = "/newTutorial")
     public ModelAndView newTutorial(ModelMap modelMap){
-        return new ModelAndView("newTutorial");
+        return new ModelAndView("tutorialNew");
     }
 
     @RequestMapping(value = "tutorial/{$id}")

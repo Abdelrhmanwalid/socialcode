@@ -12,6 +12,9 @@
 <link rel="stylesheet" href="<c:url value="/assets/css/font-awesome.min.css" />">
 <link rel="stylesheet" href="<c:url value="/assets/css/selectize.css" />">
 <link rel="stylesheet" href="<c:url value="/assets/css/square/orange.css" />">
+<link rel="stylesheet" href="<c:url value="/assets/css/medium-editor.min.css" />">
+<link rel="stylesheet" href="<c:url value="/assets/css/themes/default.min.css" />">
+<link rel="stylesheet" href="<c:url value="/assets/css/medium-editor-insert-plugin.min.css" />">
 <link rel="stylesheet" href="<c:url value="/assets/css/main.css" />">
 
 
