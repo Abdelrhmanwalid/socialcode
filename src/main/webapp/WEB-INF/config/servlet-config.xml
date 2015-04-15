@@ -12,6 +12,8 @@
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
 		p:viewClass="socialcode.view.LoadView" p:prefix="/WEB-INF/views/" p:suffix=".jsp" />
 
+	<bean id="filterMultipartResolver"
+		  class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
 
 
 	<mvc:resources mapping="/assets/**" location="/assets/" />

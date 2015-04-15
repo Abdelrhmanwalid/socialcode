@@ -17,8 +17,8 @@ public class LoginController {
 	private UserService userService;
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public ModelAndView login(@ModelAttribute("user")User user) {
-		return new ModelAndView("login");
+	public String login() {
+		return ("login");
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
