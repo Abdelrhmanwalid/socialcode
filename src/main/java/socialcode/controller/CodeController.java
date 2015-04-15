@@ -39,7 +39,6 @@ public class CodeController {
 
 	@RequestMapping(value = "/newCode", method = RequestMethod.GET)
 	public ModelAndView newCode(ModelMap modelMap) {
-		System.out.println(System.getProperty("catalina.home"));
 		List<String> languages = new ArrayList<String>();
 		for (ProgramingLanguages lang : ProgramingLanguages.values()) {
 			languages.add(lang.toString());
