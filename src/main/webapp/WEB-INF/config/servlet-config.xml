@@ -27,6 +27,9 @@
 		class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
 	</bean>
 
+	<bean id="filterMultipartResolver"
+		  class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+
 
 	<mvc:resources mapping="/assets/**" location="/assets/" />
 

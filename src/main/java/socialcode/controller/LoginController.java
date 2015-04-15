@@ -16,9 +16,10 @@ public class LoginController {
 	@Autowired
 	private UserService userService;
 
-	@RequestMapping(value = "/login2", method = RequestMethod.GET)
-	public ModelAndView login(@ModelAttribute("user")User user) {
-		return new ModelAndView("login");
+
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String login() {
+		return ("login");
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)

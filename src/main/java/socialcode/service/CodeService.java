@@ -6,4 +6,5 @@ public interface CodeService {
 
     Code save(Code code);
     Code findById(int id);
+    Code fork(int id);
 }

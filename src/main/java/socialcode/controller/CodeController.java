@@ -37,7 +37,7 @@ public class CodeController {
 	@Autowired
 	CodeService codeService;
 
-	@RequestMapping(value = "newCode", method = RequestMethod.GET)
+	@RequestMapping(value = "/newCode", method = RequestMethod.GET)
 	public ModelAndView newCode(ModelMap modelMap) {
 		System.out.println(System.getProperty("catalina.home"));
 		List<String> languages = new ArrayList<String>();
@@ -55,7 +55,37 @@ public class CodeController {
 
 	@RequestMapping(value = "newCode", method = RequestMethod.POST)
 	public String addNewCode(@ModelAttribute("code") Code code) {
+		codeService.save(code);
 
+		if (code.isRunnable()) {
+			ApplicationContext context = new AnnotationConfigApplicationContext(
+					AppConfig.class);
+			ThreadPoolTaskExecutor taskExecutor = (ThreadPoolTaskExecutor) context
+					.getBean("codeExecutor");
+			RunCodeThread runCode = (RunCodeThread) context
+					.getBean("runCodeThread");
+			runCode.setCode(code);
+			runCode.setCodeService(codeService);
+			runCode.setLang(new socialcode.ideone.api.service.Ideone()
+					.getLanguageIdByName(code.getLanguage()));
+			runCode.setSource(code.getCode());
+			runCode.setInput(code.getInput());
+			taskExecutor.execute(runCode);
+		}
+
+		int id = code.getId();
+		String codePage = "/code/" + id;
+		return "redirect:" + codePage;
+
+	}
+
+
+	@RequestMapping(value = "code/{$id}/fork", method = RequestMethod.POST)
+	public String fork(@ModelAttribute("code") Code code, @PathVariable("$id") int parent_id) {
+		if (parent_id != 0) {
+			Code parent = codeService.findById(parent_id);
+			code.setParent(parent);
+		}
 		codeService.save(code);
 
 		if (code.isRunnable()) {
@@ -86,7 +116,7 @@ public class CodeController {
 	}
 
 	@RequestMapping(value = "code/{$id}")
-	public ModelAndView code(@PathVariable("$id") int id, ModelMap modelMap) {
+	public ModelAndView viewCode(@PathVariable("$id") int id, ModelMap modelMap) {
 		// TODO : get code form database and send it back to the view
 		Code code;
 		User user;
@@ -114,6 +144,8 @@ public class CodeController {
 
 			Map<String, String> map = new HashMap<String, String>();
 			map.put("id", "");
+			
+			//remove "/socialcode" from src to work for you  
 			map.put("html", "<iframe src=\"/socialcode/code/embedjs/"
 							+id
 							+"\" width=\"100%\" frameborder=\"0\""
@@ -144,4 +176,14 @@ public class CodeController {
 		return embed;
 	}
 
+	@RequestMapping(value = "code/{$id}/fork", method = RequestMethod.GET)
+	public ModelAndView codeFork(@PathVariable("$id") int id, ModelMap modelMap) {
+		Code code = codeService.fork(id);
+		List<String> languages = new ArrayList<String>();
+		languages.add(code.getLanguage());
+		modelMap.addAttribute("code", code);
+		modelMap.addAttribute("parent_id", code.getParent().getId());
+		modelMap.addAttribute("languages", languages);
+		return new ModelAndView("codeNew").addObject("navColor","code");
+	}
 }

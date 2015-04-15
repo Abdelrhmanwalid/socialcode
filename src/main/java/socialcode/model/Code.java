@@ -17,7 +17,7 @@ public class Code {
     private String output;
     private String status;
     private boolean runnable;
-    @OneToOne
+    @ManyToOne
     private Code parent;
     @OneToOne
     private Post post;

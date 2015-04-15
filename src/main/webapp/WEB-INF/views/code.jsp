@@ -3,11 +3,12 @@
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
 			<div style="font-size: 20px; float: right; padding: 20px;">
-				<a href=""><i class="fa fa-code-fork"></i> Fork</a> (0)
+				<a href='<c:url value="/code/${code.id}/fork" />'><i class="fa fa-code-fork"></i> Fork</a> (0)
 			</div>
-			<h2 class="code-title" style="padding-left: 15px;">${code.title}
-			</h2>
-
+			<h2 class="code-title" style="padding-left: 15px;">${code.title}</h2>
+			<c:if test="${not empty code.parent}">
+			<h6>forked form <a href="/code/${code.parent.id}">${code.parent.title}</a></h6>
+			</c:if>
 			<div class="col-md-12">
 
 				<div>
@@ -46,14 +47,14 @@
 					role="tab" data-toggle="tab">Output</a></li>
 			</ul>
 
+			<c:if test="${code.runnable}">
 			<!-- Tab panes -->
 			<div class="tab-content"
 				style="min-height: 200px; border-right: 1px solid #DDD; border-left: 1px solid #DDD; border-bottom: 1px solid #DDD; padding: 30px;">
-				<div role="tabpanel" class="tab-pane active" id="input">
-					${code.input}
-				</div>
+				<div role="tabpanel" class="tab-pane active" id="input">${code.input}</div>
 				<div role="tabpanel" class="tab-pane" id="output">${code.output}</div>
 			</div>
+			</c:if>
 		</div>
 		</c:if>
 	</div>
