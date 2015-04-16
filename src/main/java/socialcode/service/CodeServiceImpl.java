@@ -10,6 +10,8 @@ import socialcode.model.Post;
 import socialcode.model.User;
 import socialcode.repository.CodeRepository;
 
+import java.util.List;
+
 @Service("CodeService")
 public class CodeServiceImpl implements CodeService {
 
@@ -44,7 +46,6 @@ public class CodeServiceImpl implements CodeService {
     public Code fork(int id){
         Code code, parent;
         parent = findById(id);
-//        code = new Code();
         code = parent;
         code.setParent(parent);
         System.out.print("service  ");
@@ -52,4 +53,16 @@ public class CodeServiceImpl implements CodeService {
         return code;
     }
 
+    public int numberOfForks(Code code) {
+        int n = codeRepository.numberOfForks(code);
+        return n;
+    }
+
+    public List<Code> findForks(Code code) {
+        return codeRepository.findForks(code);
+    }
+
+    public List<Code> findByUSer(User user) {
+        return codeRepository.findByUser(user);
+    }
 }

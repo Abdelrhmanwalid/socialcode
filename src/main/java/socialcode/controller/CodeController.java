@@ -14,7 +14,6 @@ import socialcode.AppConfig;
 import socialcode.helper.ProgramingLanguages;
 import socialcode.ideone.api.service.RunCodeThread;
 import socialcode.model.Code;
-import socialcode.model.User;
 import socialcode.service.CodeService;
 
 import javax.servlet.http.HttpServletResponse;
@@ -108,14 +107,11 @@ public class CodeController {
 
 	@RequestMapping(value = "code/{$id}")
 	public ModelAndView viewCode(@PathVariable("$id") int id, ModelMap modelMap) {
-		// TODO : get code form database and send it back to the view
 		Code code;
-		User user;
 		code = codeService.findById(id);
-		user = code.getUser();
+		int numberOfForks = codeService.numberOfForks(code);
 		modelMap.addAttribute("code", code);
-		modelMap.addAttribute("user", user);
-		// temporarily redirect to new code page until view code page is ready
+		modelMap.addAttribute("forks", numberOfForks);
 		return new ModelAndView("code").addObject("navColor", "code");
 	}
 
@@ -135,7 +131,7 @@ public class CodeController {
 
 			Map<String, String> map = new HashMap<String, String>();
 			map.put("id", "");
-			
+
 			//remove "/
 			// " from src to work for you
 			map.put("html", "<iframe src=\"/socialcode/code/embedjs/"
@@ -144,7 +140,7 @@ public class CodeController {
 							+ "style=\"border: 1px solid #c0c0c0;"
 							+ " overflow-x: hidden;\">"
 							+ "</iframe>");
-			
+
 			json = mapper.writeValueAsString(map);
 		    response.setContentType("text/plain");
 		    response.setCharacterEncoding("UTF-8");
@@ -177,5 +173,15 @@ public class CodeController {
 		modelMap.addAttribute("parent_id", code.getParent().getId());
 		modelMap.addAttribute("languages", languages);
 		return new ModelAndView("codeNew").addObject("navColor","code");
+	}
+
+	@RequestMapping(value = "code/{id}/forks", method = RequestMethod.GET)
+	public ModelAndView findForks(ModelMap modelMap, @PathVariable("id") int id){
+		Code code = codeService.findById(id);
+		List<Code> forks = codeService.findForks(code);
+		modelMap.addAttribute("code", code);
+		modelMap.addAttribute("forks", forks);
+		modelMap.addAttribute("isForkPage", true);
+		return new ModelAndView("codes").addObject("navColor", "code");
 	}
 }
