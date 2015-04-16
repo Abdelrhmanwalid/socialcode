@@ -4,7 +4,7 @@ package socialcode.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "followers")
+@Table(name = "Followers")
 public class Follower {
 
     @Id

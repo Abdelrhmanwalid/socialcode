@@ -3,7 +3,7 @@ package socialcode.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "users")
+@Table(name = "Users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,14 +14,15 @@ public class User {
     private String password;
     @Column(unique = true)
     private String email;
-    @Column(name = "profile_picture")
-    private String profilePicture;
+    @OneToOne
+    @JoinColumn(name = "profile_picture")
+    private Image profilePicture;
 
-    public String getProfilePicture() {
+    public Image getProfilePicture() {
         return profilePicture;
     }
 
-    public void setProfilePicture(String profilePicture) {
+    public void setProfilePicture(Image profilePicture) {
         this.profilePicture = profilePicture;
     }
 

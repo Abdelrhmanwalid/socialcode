@@ -1,26 +1,15 @@
 package socialcode.controller;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletResponse;
-
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
 import socialcode.AppConfig;
 import socialcode.helper.ProgramingLanguages;
 import socialcode.ideone.api.service.RunCodeThread;
@@ -28,8 +17,11 @@ import socialcode.model.Code;
 import socialcode.model.User;
 import socialcode.service.CodeService;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 public class CodeController {
@@ -144,7 +136,8 @@ public class CodeController {
 			Map<String, String> map = new HashMap<String, String>();
 			map.put("id", "");
 			
-			//remove "/socialcode" from src to work for you  
+			//remove "/
+			// " from src to work for you
 			map.put("html", "<iframe src=\"/socialcode/code/embedjs/"
 							+id
 							+"\" width=\"100%\" frameborder=\"0\""

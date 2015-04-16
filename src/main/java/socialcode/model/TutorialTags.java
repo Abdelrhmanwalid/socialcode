@@ -3,7 +3,7 @@ package socialcode.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "tutorial_tags")
+@Table(name = "Tutorial_Tags")
 public class TutorialTags {
 
     @Id

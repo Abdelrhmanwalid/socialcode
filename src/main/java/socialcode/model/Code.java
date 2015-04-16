@@ -1,5 +1,7 @@
 package socialcode.model;
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
 
 @Entity
@@ -11,9 +13,12 @@ public class Code {
     private int id;
     private String title;
     private String language;
+    @Type(type = "text")
     private String code;
     private boolean onProfile;
+    @Type(type = "text")
     private String input;
+    @Type(type = "text")
     private String output;
     private String status;
     private boolean runnable;
