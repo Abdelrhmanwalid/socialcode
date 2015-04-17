@@ -19,6 +19,8 @@ public class CodeServiceImpl implements CodeService {
     private CodeRepository codeRepository;
     @Autowired
     private UserService userService;
+    @Autowired
+    private PostService postService;
 
     public Code save(Code code) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -30,6 +32,8 @@ public class CodeServiceImpl implements CodeService {
                 Post post = new Post();
                 post.setType(PostTypes.CODE.toString());
                 post.setUser(user);
+                postService.Save(post);
+                code.setPost(post);
             }
             if (code.isRunnable()) {
                 // TODO : move run here from controller

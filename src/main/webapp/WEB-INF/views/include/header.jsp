@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<c:set scope="application" value="${pageContext.request.contextPath}" var="root" />
 <header id="header" class="header headroom">
             <!-- Fixed navbar -->
             <nav class="navbar">
@@ -12,7 +12,7 @@
                             <li <% if(request.getAttribute("navColor")!=null && request.getAttribute("navColor").equals("home")){ %>
                              class="active"
                             <% } %>
-                            ><a href="home.html"><i class="fa  fa-home"></i><span class="hidden-sm"> Home</span></a></li>
+                            ><a href="${root}/home"><i class="fa  fa-home"></i><span class="hidden-sm"> Home</span></a></li>
                             <li <% if(request.getAttribute("navColor")!=null && request.getAttribute("navColor").equals("profile")){ %>
                              class="active"
                             <% } %>
@@ -23,12 +23,12 @@
                              class="active"
                             <% } %>
                             >
-                            <a href="<c:url value="/code" />"><i class="fa fa-code"></i>
+                            <a href="${root}/code"><i class="fa fa-code"></i>
                                 <span class="hidden-sm"> Code </span></a></li>
                             <li <% if(request.getAttribute("navColor")!=null && request.getAttribute("navColor").equals("tutorial")){ %>
                              class="active"
                             <% } %>
-                            ><a href="new-tutorial.html"><i class="fa fa-pencil"></i><span class="hidden-sm"> Tutorial</span></a></li>
+                            ><a href="${root}/newTutorial"><i class="fa fa-pencil"></i><span class="hidden-sm"> Tutorial</span></a></li>
                         </ul>
                         <form class="navbar-form navbar-left" role="search">
                             <div class="form-group">

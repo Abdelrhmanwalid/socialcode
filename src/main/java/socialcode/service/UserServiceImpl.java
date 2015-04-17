@@ -1,6 +1,7 @@
 package socialcode.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import socialcode.model.User;
@@ -20,5 +21,10 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public User findByUserEmail(String email) {
         return userRepository.findByUserEmail(email);
+    }
+
+    public User getCurrentUser(){
+        User activeUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return activeUser;
     }
 }

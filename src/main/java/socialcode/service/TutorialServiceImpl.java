@@ -4,13 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-
 import socialcode.helper.PostTypes;
-import socialcode.model.Code;
 import socialcode.model.Post;
 import socialcode.model.Tutorial;
 import socialcode.model.User;
-import socialcode.repository.CodeRepository;
 import socialcode.repository.TutorialRepository;
 
 @Service("TutorialService")

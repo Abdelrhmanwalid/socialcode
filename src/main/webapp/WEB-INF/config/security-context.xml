@@ -18,7 +18,7 @@
 		<!-- access denied page -->
 		<access-denied-handler error-page="/403" />
 
-		<form-login login-page="/login" default-target-url="/"
+		<form-login login-page="/login" default-target-url="/home"
 			authentication-failure-url="/login?error" username-parameter="email"
 			password-parameter="password" always-use-default-target="true" />
 		<logout logout-success-url="/login?logout" invalidate-session="true"

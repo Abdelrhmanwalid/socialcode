@@ -4,12 +4,12 @@
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
 			<div style="font-size: 20px; float: right; padding: 20px;">
-				<a href='<c:url value="/code/${code.id}/fork" />'><i class="fa fa-code-fork"></i> Fork</a> (<a
-					href="${root}/code/${code.id}/forks">${forks}</a>)
+				<a href="${root}/code/${code.id}/fork"><i class="fa fa-code-fork"></i> Fork</a>
+				(<a href="${root}/code/${code.id}/forks">${forks}</a>)
 			</div>
 			<h2 class="code-title" style="padding-left: 15px;">${code.title}</h2>
 			<c:if test="${not empty code.parent}">
-			<h6>forked form <a href="${pageContext.request.contextPath}/code/${code.parent.id}">${code.parent.title}</a></h6>
+			<h6>forked form <a href="${root}/code/${code.parent.id}">${code.parent.title}</a></h6>
 			</c:if>
 			<div class="col-md-12">
 

@@ -12,10 +12,9 @@
 			${tutorial.text}
 			<hr>
 			<div class="row">
-				<button type="button" class="btn btn-info btn-sm">CSS</button>
-				<button type="button" class="btn btn-info btn-sm">Tags</button>
-				<button type="button" class="btn btn-info btn-sm">JS</button>
-				<button type="button" class="btn btn-info btn-sm">Code</button>
+				<c:forEach items="${tags}" var="tag">
+				<button type="button" class="btn btn-info btn-sm">${tag.tag}</button>
+				</c:forEach>
 			</div>
 		</div>
 	</div>
@@ -26,11 +25,11 @@
 				<div class="row">
 					<div class="col-md-4" style="text-align: center;">
 						<img class="img-circle" src="img/pp.jpg"
-							style="height: 150px; width: 150px;"></img>
+							style="height: 150px; width: 150px;" />
 					</div>
 					<div class="col-md-8">
 						<h3>
-							<a href="">Mohamed Mohamed</a>
+							<a href="">${user.first_name} ${user.last_name}</a>
 						</h3>
 						<p>Love coding like a ninja. C# JavaScript NodeJS and more...
 						</p>

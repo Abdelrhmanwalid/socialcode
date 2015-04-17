@@ -1,8 +1,8 @@
 package socialcode.model;
 
-import javax.persistence.*;
-
 import org.hibernate.annotations.Type;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "Tutorials")

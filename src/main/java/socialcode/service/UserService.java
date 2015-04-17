@@ -8,4 +8,6 @@ public interface UserService {
     User save(User user);
 
     User findByUserEmail(String email);
+
+    public User getCurrentUser();
 }
