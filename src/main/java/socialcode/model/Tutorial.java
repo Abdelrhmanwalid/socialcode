@@ -2,6 +2,8 @@ package socialcode.model;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.Type;
+
 @Entity
 @Table(name = "Tutorials")
 public class Tutorial {
@@ -10,6 +12,7 @@ public class Tutorial {
     @GeneratedValue
     private int id;
     private String title;
+    @Type(type = "text")
     private String text;
     @OneToOne
     @JoinColumn(nullable = false)

@@ -33,7 +33,7 @@
 			<!-- loginController -> password encoder -->
 			<!--<password-encoder hash="bcrypt" /> -->
 			<jdbc-user-service data-source-ref="dataSource"
-				users-by-username-query="select email,password,true from users where email= ?"
+				users-by-username-query="select email,password,true from Users where email= ?"
 				authorities-by-username-query="select ? , 'ROLE_USER'" />
 		</authentication-provider>
 	</authentication-manager>

@@ -2,7 +2,7 @@ package socialcode.helper;
 
 public enum ProgramingLanguages {
     // dummy
-    ONE("Python"), TWO("Two");
+    ONE("Python"), TWO("C++");
 
     private String string;
 

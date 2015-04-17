@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.util.HtmlUtils;
 import socialcode.AppConfig;
 import socialcode.helper.ProgramingLanguages;
 import socialcode.ideone.api.service.RunCodeThread;
@@ -135,8 +136,8 @@ public class CodeController {
 			//remove "/
 			// " from src to work for you
 			map.put("html", "<iframe src=\"/socialcode/code/embedjs/"
-							+id
-							+"\" width=\"100%\" frameborder=\"0\""
+							+id + "\" frameborder=\"0\" scrolling=\"no\" "
+							+" width=\"100%\" onload='javascript:resizeIframe(this);' frameborder=\"0\""
 							+ "style=\"border: 1px solid #c0c0c0;"
 							+ " overflow-x: hidden;\">"
 							+ "</iframe>");
@@ -159,8 +160,13 @@ public class CodeController {
 	public String embedjs(@PathVariable("$id") int id) {
 		Code code;
 		code = codeService.findById(id);
-		String embed = "<pre><code class=\"" + code.getLanguage() + "\">"
-				+ code.getCode() + "</code></pre>";
+		String embed = "<link rel=\"stylesheet\" href=\"http://localhost:8080/socialcode/assets/css/highlight.min.css\" >"
+				+ "<html><body style=\"margin:0px;\" > <pre "
+				+ "style=\"border-radius: 0px;margin: 0px; border: 0px none; font-size: 13px; white-space: normal; padding: 40px 50px; background: none repeat scroll 0% 0% rgb(35, 36, 31); word-wrap: normal;\"  >"
+				+ "<code class=\"" + code.getLanguage() + "\">"
+				+ code.getCode().replaceAll("(\r\n|\n)", "<br />") + "</code></pre>"
+						+ "<script src=\"http://localhost:8080/socialcode/assets/js/highlight.min.js\"></script>"
+						+ "<script>hljs.initHighlightingOnLoad();</script></body></html>";
 		return embed;
 	}
 
