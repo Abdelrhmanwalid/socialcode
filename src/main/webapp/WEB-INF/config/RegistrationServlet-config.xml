@@ -10,7 +10,7 @@
 
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
-		p:prefix="/WEB-INF/views/" p:suffix=".jsp" />
+		p:prefix="/WEB-INF/views/login/" p:suffix=".jsp" />
 
 
 
