@@ -9,7 +9,7 @@
 	</script>
 	<div class="row">
 		<div class="row tut-head"
-			style="background-color: #52C8FF; margin-top: -130px; padding-top: 130px; padding-bottom: 80px; background: url('assets/img/octicons-bg.png') repeat scroll 0% 0% #DD6B55; font-family: 'Open Sans', sans-serif;">
+			style="background-color: #EF7126; margin-top: -130px; padding-top: 130px; padding-bottom: 80px; background: url('assets/img/octicons-bg.png') repeat scroll 0% 0% #EF7126; font-family: 'Open Sans', sans-serif;">
 			<h1
 				style="color: white; font-size: 50px; text-align: center; min-height: 100px; display: flex; justify-content: center; flex-direction: column;"
 				class="tut-title editable" data-disable-toolbar="true">Title</h1>

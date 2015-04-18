@@ -1,27 +1,35 @@
 package socialcode.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.HtmlUtils;
+
 import socialcode.AppConfig;
 import socialcode.helper.ProgramingLanguages;
 import socialcode.ideone.api.service.RunCodeThread;
 import socialcode.model.Code;
 import socialcode.service.CodeService;
 
-import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
 public class CodeController {
@@ -137,7 +145,7 @@ public class CodeController {
 			// " from src to work for you
 			map.put("html", "<iframe src=\"/socialcode/code/embedjs/"
 							+id + "\" frameborder=\"0\" scrolling=\"no\" "
-							+" width=\"100%\" onload='javascript:resizeIframe(this);' frameborder=\"0\""
+							+" width=\"100%\" onload='' frameborder=\"0\""
 							+ "style=\"border: 1px solid #c0c0c0;"
 							+ " overflow-x: hidden;\">"
 							+ "</iframe>");
@@ -164,7 +172,7 @@ public class CodeController {
 				+ "<html><body style=\"margin:0px;\" > <pre "
 				+ "style=\"border-radius: 0px;margin: 0px; border: 0px none; font-size: 13px; white-space: normal; padding: 40px 50px; background: none repeat scroll 0% 0% rgb(35, 36, 31); word-wrap: normal;\"  >"
 				+ "<code class=\"" + code.getLanguage() + "\">"
-				+ code.getCode().replaceAll("(\r\n|\n)", "<br />") + "</code></pre>"
+				+ org.springframework.web.util.HtmlUtils.htmlEscape(code.getCode()).replaceAll("(\r\n|\n)", "<br/>") + "</code></pre>"
 						+ "<script src=\"http://localhost:8080/socialcode/assets/js/highlight.min.js\"></script>"
 						+ "<script>hljs.initHighlightingOnLoad();</script></body></html>";
 		return embed;
