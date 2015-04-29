@@ -16,7 +16,7 @@
                             <li <% if(request.getAttribute("navColor")!=null && request.getAttribute("navColor").equals("profile")){ %>
                              class="active"
                             <% } %>
-                            ><a href="profile.html"><i class="fa fa-user"></i>
+                            ><a href="${root}/profile"><i class="fa fa-user"></i>
                                 <span class="hidden-sm"> Profile</span>
                                 </a></li>
                             <li <% if(request.getAttribute("navColor")!=null && request.getAttribute("navColor").equals("code")){ %>
@@ -36,8 +36,8 @@
                             </div>
                         </form>
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="account.html">Account</a></li>
-                            <li><a href="login.html">Logout</a></li>
+                            <li><a href="${root}/account">Account</a></li>
+                            <li><a href="${root}/logout">Logout</a></li>
                         </ul>
                     </div>
                     <!--/.nav-collapse -->
