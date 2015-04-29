@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div class="container">
     <div class="profile-header">
@@ -7,12 +8,14 @@
         <div class="user-info">
             <div class="row title">
                 <div class="user-name">
-                    <a href="profile">Ahmed Tahoon</a>
+                    <a href="profile">${user.first_name} ${user.last_name}</a>
                 </div>
+                <c:if test="${not current}" >
                 <a class="follow btn btn-default">Follow</a>
                 <a class="follow btn btn-success"
                    onMouseout="this.textContent='Followed';this.classList.remove('btn-warning') ;"
                    onMouseover="this.textContent='Unfollow';this.classList.add('btn-warning') ;">Followed</a>
+                </c:if>
             </div>
             <div class="user-about">
                 Bio goes here ....
@@ -23,19 +26,19 @@
                 <small class="menu-label row">
                     Codes
                 </small>
-                5
+                ${codes.size()}
             </div>
             <div class="menu-item col-md-4">
                 <small class="menu-label row">
                     Tutorials
                 </small>
-                15
+                ${tutorials.size()}
             </div>
             <div class="menu-item col-md-4">
                 <small class="menu-label row">
                     Followers
                 </small>
-                35
+                ${user.followers.size()}
             </div>
         </div>
     </div>

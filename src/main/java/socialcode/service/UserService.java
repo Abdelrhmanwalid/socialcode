@@ -9,5 +9,11 @@ public interface UserService {
 
     User findByUserEmail(String email);
 
-    public User getCurrentUser();
+    User getCurrentUser();
+
+    User findById(int id);
+
+    boolean addFollower(User user, User follower);
+
+    boolean removeFollower(User user, User follower);
 }

@@ -10,6 +10,9 @@ import socialcode.model.Tutorial;
 import socialcode.model.User;
 import socialcode.repository.TutorialRepository;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service("TutorialService")
 public class TutorialServiceImpl implements TutorialService {
 
@@ -38,5 +41,11 @@ public class TutorialServiceImpl implements TutorialService {
 
 	public Tutorial findById(int id) {
 		return tutorialRepository.findOne(id);
+	}
+
+	public List<Tutorial> findByUser(User user) {
+		List<Tutorial> tutorials = new ArrayList<Tutorial>();
+		tutorials = tutorialRepository.findByUser(user);
+		return tutorials;
 	}
 }
