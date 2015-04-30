@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <c:set scope="application" value="${pageContext.request.contextPath}"
        var="root"/>
@@ -14,10 +15,10 @@
                 </div>
                 <c:if test="${not isCurrent}">
                     <c:choose>
-                        <c:when test="${user.followers.contains(currentUser)} ">
+                        <c:when test="${user.followers.contains(currentUser)}">
                             <a href="${root}/user/${user.id}/unfollow" class="follow btn btn-success"
-                               onMouseout="this.textContent='Followed';this.classList.remove('btn-warning') ;"
-                               onMouseover="this.textContent='Unfollow';this.classList.add('btn-warning') ;">Followed</a>
+                               onMouseout="this.textContent='Following';this.classList.remove('btn-warning') ;"
+                               onMouseover="this.textContent='Unfollow';this.classList.add('btn-warning') ;">Following</a>
                         </c:when>
                         <c:otherwise>
                             <a href="${root}/user/${user.id}/follow" class="follow btn btn-default">Follow</a>
@@ -34,19 +35,19 @@
                 <small class="menu-label row">
                     Codes
                 </small>
-                ${codes.size()}
+                ${fn:length(codes)}
             </div>
             <div class="menu-item col-md-4">
                 <small class="menu-label row">
                     Tutorials
                 </small>
-                ${tutorials.size()}
+                ${fn:length(tutorials)}
             </div>
             <div class="menu-item col-md-4">
                 <small class="menu-label row">
                     Followers
                 </small>
-                ${user.followers.size()}
+                ${fn:length(user.followers)}
             </div>
         </div>
     </div>

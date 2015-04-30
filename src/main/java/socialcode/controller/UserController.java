@@ -28,41 +28,41 @@ public class UserController {
 
 
     @RequestMapping(value = "/profile")
-    public ModelAndView profile(ModelMap modelMap){
+    public ModelAndView profile(ModelMap modelMap) {
         User user = userService.getCurrentUser();
         modelMap = createUserModelMap(user, modelMap, true);
-        return new ModelAndView("profile").addObject("navColor","profile");
+        return new ModelAndView("profile").addObject("navColor", "profile");
     }
 
     @RequestMapping(value = "/user/{$id}", method = RequestMethod.GET)
-    public ModelAndView user(@PathVariable("$id") int id, ModelMap modelMap){
-        if (userService.getCurrentUser() == userService.findById(id)){
+    public ModelAndView user(@PathVariable("$id") int id, ModelMap modelMap) {
+        if (userService.getCurrentUser() == userService.findById(id)) {
             return new ModelAndView("redirect:/profile");
         }
         User user = userService.findById(id);
         User currentUser = userService.getCurrentUser();
         modelMap = createUserModelMap(user, modelMap, false);
         modelMap.addAttribute("currentUser", currentUser);
-        return new ModelAndView("profile").addObject("navColor","profile");
+        return new ModelAndView("profile").addObject("navColor", "profile");
     }
 
     @RequestMapping(value = "/user/{id}/follow")
-    public ModelAndView follow(@PathVariable("id") int id){
+    public ModelAndView follow(@PathVariable("id") int id) {
         User targetUser = userService.findById(id);
         User current = userService.getCurrentUser();
         userService.addFollower(targetUser, current);
-        return new ModelAndView("redirect:/user/" + id).addObject("navColor","profile");
+        return new ModelAndView("redirect:/user/" + id);
     }
 
     @RequestMapping(value = "/user/{id}/unfollow")
-    public ModelAndView unFollow(@PathVariable("id") int id){
+    public ModelAndView unFollow(@PathVariable("id") int id) {
         User targetUser = userService.findById(id);
         User current = userService.getCurrentUser();
         userService.removeFollower(targetUser, current);
-        return new ModelAndView("redirect:/user/" + id).addObject("navColor","profile");
+        return new ModelAndView("redirect:/user/" + id);
     }
 
-    ModelMap createUserModelMap(User user, ModelMap modelMap, boolean current){
+    ModelMap createUserModelMap(User user, ModelMap modelMap, boolean current) {
         List<Code> codes = codeService.findByUSer(user);
         List<Tutorial> tutorials = tutorialService.findByUser(user);
         modelMap.addAttribute("user", user);
