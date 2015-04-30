@@ -1,20 +1,28 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<c:set scope="application" value="${pageContext.request.contextPath}"
+       var="root"/>
 <div class="container">
     <div class="profile-header">
         <div class="top-section">
-            <img class="img-circle" src="img/pp.jpg" alt="Profile Picture" />
+            <img class="img-circle" src="img/pp.jpg" alt="Profile Picture"/>
         </div>
         <div class="user-info">
             <div class="row title">
                 <div class="user-name">
                     <a href="profile">${user.first_name} ${user.last_name}</a>
                 </div>
-                <c:if test="${not current}" >
-                <a class="follow btn btn-default">Follow</a>
-                <a class="follow btn btn-success"
-                   onMouseout="this.textContent='Followed';this.classList.remove('btn-warning') ;"
-                   onMouseover="this.textContent='Unfollow';this.classList.add('btn-warning') ;">Followed</a>
+                <c:if test="${not isCurrent}">
+                    <c:choose>
+                        <c:when test="${user.followers.contains(currentUser)} ">
+                            <a href="${root}/user/${user.id}/unfollow" class="follow btn btn-success"
+                               onMouseout="this.textContent='Followed';this.classList.remove('btn-warning') ;"
+                               onMouseover="this.textContent='Unfollow';this.classList.add('btn-warning') ;">Followed</a>
+                        </c:when>
+                        <c:otherwise>
+                            <a href="${root}/user/${user.id}/follow" class="follow btn btn-default">Follow</a>
+                        </c:otherwise>
+                    </c:choose>
                 </c:if>
             </div>
             <div class="user-about">

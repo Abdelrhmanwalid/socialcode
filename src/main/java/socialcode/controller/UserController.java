@@ -40,7 +40,9 @@ public class UserController {
             return new ModelAndView("redirect:/profile");
         }
         User user = userService.findById(id);
+        User currentUser = userService.getCurrentUser();
         modelMap = createUserModelMap(user, modelMap, false);
+        modelMap.addAttribute("currentUser", currentUser);
         return new ModelAndView("profile").addObject("navColor","profile");
     }
 
@@ -66,7 +68,7 @@ public class UserController {
         modelMap.addAttribute("user", user);
         modelMap.addAttribute("tutorials", tutorials);
         modelMap.addAttribute("codes", codes);
-        modelMap.addAttribute("current", current);
+        modelMap.addAttribute("isCurrent", current);
         return modelMap;
     }
 }
