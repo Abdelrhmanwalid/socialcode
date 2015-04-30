@@ -1,6 +1,7 @@
 package socialcode.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -18,8 +19,8 @@ public class User {
     @OneToOne
     @JoinColumn(name = "profile_picture")
     private Image profilePicture;
-    @OneToMany
-    List<User> followers;
+    @ManyToMany
+    List<User> followers = new ArrayList<User>();
 
     public User() {
     }
