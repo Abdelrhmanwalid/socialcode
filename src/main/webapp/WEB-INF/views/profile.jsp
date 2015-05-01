@@ -149,6 +149,3 @@
 
     </div>
 </div>
-
-http://localhost:8888/socialcode/user/1/follow
-for i in $( ls ); do echo item: $i done
