@@ -3,6 +3,7 @@ package socialcode.model;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "Tutorials")
@@ -17,6 +18,9 @@ public class Tutorial {
     @OneToOne
     @JoinColumn(nullable = false)
     private Post post;
+
+    private Date created_at;
+    private Date updated_at;
 
     public int getId() {
         return id;
@@ -48,5 +52,24 @@ public class Tutorial {
 
     public void setPost(Post post) {
         this.post = post;
+    }
+
+    @PrePersist
+    protected void onCreate() {
+        this.created_at = new Date();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        this.updated_at = new Date();
+    }
+
+
+    public Date getCreated_at() {
+        return created_at;
+    }
+
+    public Date getUpdated_at() {
+        return updated_at;
     }
 }

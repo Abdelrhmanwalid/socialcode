@@ -3,6 +3,7 @@ package socialcode.model;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "Codes")
@@ -28,6 +29,8 @@ public class Code {
     private Post post;
     @ManyToOne
     private User user;
+    private Date created_at;
+    private Date updated_at;
 
     public User getUser() {
         return user;
@@ -124,4 +127,25 @@ public class Code {
     public void setStatus(String status) {
         this.status = status;
     }
+
+
+    @PrePersist
+    protected void onCreate() {
+        this.created_at = new Date();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        this.updated_at = new Date();
+    }
+
+
+    public Date getCreated_at() {
+        return created_at;
+    }
+
+    public Date getUpdated_at() {
+        return updated_at;
+    }
+
 }

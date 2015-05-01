@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.util.HtmlUtils;
 import socialcode.helper.PostTypes;
 import socialcode.model.Post;
 import socialcode.model.Tutorial;
@@ -47,5 +48,10 @@ public class TutorialServiceImpl implements TutorialService {
 		List<Tutorial> tutorials = new ArrayList<Tutorial>();
 		tutorials = tutorialRepository.findByUser(user);
 		return tutorials;
+	}
+
+	@Override
+	public Tutorial findByPost(Post post) {
+		return tutorialRepository.findByPost(post);
 	}
 }

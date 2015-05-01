@@ -1,7 +1,14 @@
 package socialcode.service;
 
+import socialcode.model.Code;
 import socialcode.model.Post;
+import socialcode.model.User;
+
+import java.util.HashMap;
+import java.util.List;
 
 public interface PostService {
+    List<Post> findByUser(User user);
+    HashMap<Post, Object> getUserPosts(User user);
     Post Save(Post post);
 }

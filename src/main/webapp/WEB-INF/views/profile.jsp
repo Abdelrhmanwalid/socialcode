@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <c:set scope="application" value="${pageContext.request.contextPath}"
        var="root"/>
@@ -53,92 +54,101 @@
     </div>
     <hr>
     <div class="profile-container">
+        <c:forEach items="${postsList}" var="post">
+            <c:if test="${post.type=='tutorial'}">
+                <c:set value="${PostsWithData[post]}"
+                       var="tutorial"/>
+                <div class="post row">
+                    <div class="post-header row">
+                        <div class="user-pic col-md-1">
+                            <img src="img/pp.jpg" alt="..." class="img-circle">
+                        </div>
+                        <div class="user-info col-md-3">
+                            <div class="user-name">
+                                <a href="${root}/user/${post.user.id}">
+                                    ${post.user.first_name} ${post.user.last_name}
+                                </a>
+                            </div>
+                            <div class="post-time">
+                                <c:set var="time" value="${tutorial.created_at}"/>
+                                <fmt:formatDate type="both"
+                                                value="${time}"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="post-container row">
+                        <div class="col-md-12">
+                            <a class="post-title" href="${root}/tutorial/${tutorial.id}">
+                                <h4>${tutorial.title}</h4>
+                            </a>
 
-        <div class="post row">
-            <div class="post-header row">
-                <div class="user-pic col-md-1">
-                    <img src="img/pp.jpg" alt="..." class="img-circle">
-                </div>
-                <div class="user-info col-md-3">
-                    <div class="user-name"><a href="">
-                        Mohamed Kamal</a></div>
-                    <div class="post-time">15 mins ago.</div>
-                </div>
-            </div>
-            <div class="post-container row">
-                <div class="col-md-12">
-                    <a class="post-title">
-                        <h4>How to setup Git</h4>
-                    </a>
+                            <p>
+                                    ${fn:substring(tutorial.text,0,500)}
+                            </p>
+                        </div>
 
-                    <p>
-                        We can make thisf n divides a number that is g code run faster by noticing that we only need to
-                        check divisibility for values of i that are less or equal to the square root of n (call this m).
-                        If n divides a number that is greater than m then the result of that division will be some
-                        number less than m and thus n will also divide a number less or equal to....<a>Continue</a>
-                    </p>
-                </div>
-
-            </div>
-            <div class="post-footer">
-                <div class="row">
-                    <a onclick='swal({title: "Favorited!",  text: "You favorited this tutorial!",  timer: 5000, type: "success" });'><i
-                            class="fa fa-heart"></i> Favorite </a> -
-                    <a><i class="fa fa-share"></i> Share </a> -
-                    <a><i class="fa fa-comment"></i> Comment </a>
-                </div>
-            </div>
-        </div>
-
-        <hr>
-
-        <div class="post row">
-            <div class="post-header row">
-                <div class="user-pic col-md-1">
-                    <img src="img/pp.jpg" alt="..." class="img-circle">
-                </div>
-                <div class="user-info col-md-3">
-
-                    <div class="user-name"><a href="">
-                        Mohamed Kamal</a></div>
-                    <div class="post-time">15 mins ago.</div>
-                </div>
-            </div>
-            <div class="post-container row">
-                <div class="col-md-12">
-                    <a class="post-title">
-                        <h4>Bash code for fun</h4>
-                    </a>
-
-                    <div class="code-preview">
-                            <pre><code class="bash">#!/bin/bash
-
-                                ###### BEGIN CONFIG
-                                ACCEPTED_HOSTS=&quot;/root/.hag_accepted.conf&quot;
-                                BE_VERBOSE=false
-                                ###### END CONFIG
-
-                                if [ &quot;$UID&quot; -ne 0 ]
-                                then
-                                echo &quot;Superuser rights is required&quot;
-                                echo &#39;Printing the # sign&#39;
-                                exit 2
-                            </code></pre>
+                    </div>
+                    <div class="post-footer">
+                        <div class="row">
+                            <a onclick='swal({title: "Favorited!",  text: "You favorited this tutorial!",  timer: 5000, type: "success" });'><i
+                                    class="fa fa-heart"></i> Favorite </a> -
+                            <a><i class="fa fa-share"></i> Share </a> -
+                            <a><i class="fa fa-comment"></i> Comment </a>
+                        </div>
                     </div>
                 </div>
+            </c:if>
+            <c:if test="${post.type=='code'}">
+                <c:set value="${PostsWithData[post]}"
+                       var="code"/>
+                <div class="post row">
+                    <div class="post-header row">
+                        <div class="user-pic col-md-1">
+                            <img src="img/pp.jpg" alt="..." class="img-circle">
+                        </div>
+                        <div class="user-info col-md-3">
 
-            </div>
-            <div class="post-footer">
-                <div class="row">
-                    <a onclick='swal({title: "Favorited!",  text: "You favorited this tutorial!",  timer: 5000, type: "success" });'><i
-                            class="fa fa-heart"></i> Favorite </a> -
-                    <a><i class="fa fa-share"></i> Share </a> -
-                    <a><i class="fa fa-comment"></i> Comment </a>
+                            <div class="user-name">
+                                <a href="${root}/user/${post.user.id}">
+                                    ${post.user.first_name} ${post.user.last_name}
+                            </a>
+                            </div>
+                            <div class="post-time">
+                                <c:set var="time" value="${tutorial.created_at}"/>
+                                <fmt:formatDate type="both"
+                                                value="${time}"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="post-container row">
+                        <div class="col-md-12">
+                            <a class="post-title" href="${root}/code/${code.id}">
+                                <h4>${code.title}</h4>
+                            </a>
+
+                            <div class="code-preview">
+                                <pre><code class="${code.language}">${fn:escapeXml(code.code)}</code></pre>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="post-footer">
+                        <div class="row">
+                            <a onclick='swal({title: "Favorited!",  text: "You favorited this tutorial!",  timer: 5000, type: "success" });'><i
+                                    class="fa fa-heart"></i> Favorite </a> -
+                            <a><i class="fa fa-share"></i> Share </a> -
+                            <a><i class="fa fa-comment"></i> Comment </a>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <hr>
+            </c:if>
+            <hr>
+
+        </c:forEach>
 
 
     </div>
 </div>
+
+http://localhost:8888/socialcode/user/1/follow
+for i in $( ls ); do echo item: $i done

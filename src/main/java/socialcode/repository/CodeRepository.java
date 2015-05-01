@@ -4,6 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import socialcode.model.Code;
+import socialcode.model.Post;
 import socialcode.model.User;
 
 import java.util.List;
@@ -18,4 +19,7 @@ public interface CodeRepository extends JpaRepository<Code, Integer> {
 
     @Query("select c from Code c where c.user = ?1")
     List<Code> findByUser(User user);
+
+    @Query("select c from Code c where c.post = ?1")
+    Code findByPost(Post post);
 }
