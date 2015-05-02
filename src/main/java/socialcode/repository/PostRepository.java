@@ -14,7 +14,7 @@ public interface PostRepository extends JpaRepository<Post, Integer> {
     @Query("select p from Post p where p.user.id = ?1 order by p.id desc")
     List<Post> findByUserId(int id);
 
-    @Query("select p from Post p where p.user in ?1")
+    @Query("select p from Post p where p.user in ?1 order by p.id desc")
     List<Post> findByUsers(List<User> users);
 
 //    @Query("select t from Tutorial t where ?1 in t.tags")

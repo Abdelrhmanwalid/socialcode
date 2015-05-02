@@ -11,7 +11,6 @@ import socialcode.model.User;
 import socialcode.service.PostService;
 import socialcode.service.UserService;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -28,7 +27,6 @@ public class HomeController {
 		User currentUser = userService.getCurrentUser();
 		List<User> userFollowing = userService.findFollowings(currentUser);
 		List<Post> postsList = postService.findByUsers(userFollowing);
-		Collections.reverse(postsList);
 		HashMap<Post, Object> postsWithData = new HashMap<Post, Object>();
 		for (User u : userFollowing) {
 			postsWithData.putAll(postService.getUserPosts(u));
