@@ -51,7 +51,6 @@ public class CodeServiceImpl implements CodeService {
         return code;
     }
 
-    @Override
     public Code findByPost(Post post) {
         return codeRepository.findByPost(post);
     }

@@ -3,6 +3,8 @@ package socialcode.service;
 
 import socialcode.model.User;
 
+import java.util.List;
+
 public interface UserService {
 
     User save(User user);
@@ -16,4 +18,6 @@ public interface UserService {
     boolean addFollower(User user, User follower);
 
     boolean removeFollower(User user, User follower);
+
+    List<User> findFollowings(User user);
 }

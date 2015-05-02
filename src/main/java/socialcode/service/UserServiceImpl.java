@@ -58,4 +58,8 @@ public class UserServiceImpl implements UserService {
         save(user);
         return success;
     }
+
+    public List<User> findFollowings(User user) {
+        return userRepository.findFollowing(user);
+    }
 }
