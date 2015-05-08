@@ -8,8 +8,10 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import socialcode.AppConfig;
 import socialcode.helper.ProgramingLanguages;
 import socialcode.ideone.api.service.RunCodeThread;
@@ -18,6 +20,8 @@ import socialcode.service.CodeService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
+import javax.xml.transform.sax.SAXSource;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -35,9 +39,10 @@ public class CodeController {
 		for (ProgramingLanguages lang : ProgramingLanguages.values()) {
 			languages.add(lang.toString());
 		}
-
-		modelMap.addAttribute("languages", languages);
-		modelMap.addAttribute("code", new Code());
+        if(!modelMap.containsAttribute("code")){
+            modelMap.addAttribute("code", new Code());
+        }
+        modelMap.addAttribute("languages", languages);
 		ModelAndView modelView = new ModelAndView("codeNew");
 		modelView.addObject("navColor", "code");
 		return modelView;
@@ -45,7 +50,12 @@ public class CodeController {
 	}
 
 	@RequestMapping(value = "newCode", method = RequestMethod.POST)
-	public String addNewCode(@ModelAttribute("code") Code code) {
+	public ModelAndView addNewCode(@Valid @ModelAttribute("code") Code code,final BindingResult binding,RedirectAttributes redirectAttributes) {
+        if(binding.hasErrors()) {
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.code", binding);
+            redirectAttributes.addFlashAttribute("code", code);
+            return new ModelAndView("redirect:/newCode");
+        }
 		codeService.save(code);
 
 		if (code.isRunnable()) {
@@ -66,7 +76,7 @@ public class CodeController {
 
 		int id = code.getId();
 		String codePage = "/code/" + id;
-		return "redirect:" + codePage;
+		return new ModelAndView( "redirect:" + codePage);
 
 	}
 

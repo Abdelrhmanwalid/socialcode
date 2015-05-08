@@ -8,6 +8,7 @@
             <label class="col-sm-3 control-label">Title</label>
             <div class="col-sm-9">
                 <form:input path="title" type="text" name="title" class="form-control" placeholder="Title" />
+                <p class="help-block" style="color:#ff0000;"><form:errors path="title" /></p>
             </div>
         </div>
         <div class="form-group">
@@ -21,6 +22,7 @@
             <label class="col-sm-3 control-label">Code</label>
             <div class="col-sm-9">
                 <form:textarea path="code" class="form-control" rows="20"/>
+                <p class="help-block" style="color:#ff0000;"><form:errors path="code" /></p>
             </div>
         </div>
 

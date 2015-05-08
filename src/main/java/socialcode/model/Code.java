@@ -1,8 +1,14 @@
 package socialcode.model;
 
 import org.hibernate.annotations.Type;
+import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.validation.groups.ConvertGroup;
 import java.util.Date;
 
 @Entity
@@ -12,9 +18,14 @@ public class Code {
     @Id
     @GeneratedValue
     private int id;
+    @Length.List({
+            @Length(min = 1, message = "Can you make this condition ($title.length > 0) equal true ?"),
+            @Length(max = 50, message = "($title.length <= 50) = false // make it true")
+    })
     private String title;
     private String language;
     @Type(type = "text")
+    @Length(min = 1 , message = "I can't see your code !!")
     private String code;
     private boolean onProfile;
     @Type(type = "text")
