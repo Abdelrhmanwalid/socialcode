@@ -246,8 +246,11 @@ button:active {
             </div>
             <!---------- Login Form Start--------->
             <div class="login-h">
+                <c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION}">
+                    <c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}"/>.
+                </c:if>
                     <form class="login-form" id="form" action="${loginUrl}" method="POST">
-                    
+
                         <input type="text" name="email" class="email" placeholder="Email">
                         <input type="password" name="password" class="password" placeholder="Password">
                         <button type="submit" >Sign in</button>
@@ -263,14 +266,19 @@ button:active {
                 <div class="regstration-form">
                 <form:form commandName="user" action="register" method="post">
                     <form:input path="first_name" type="text" name="firstname" class="username" placeholder="First name"/>
+                    <form:errors path="first_name" />
                     <form:input path="last_name" type="text" name="lastname" class="email" placeholder="Last name"/>
+                    <form:errors path="last_name" />
                     <form:input path="email" type="email" name="email" class="email" placeholder="Email"/>
+                    <form:errors path="email" />
                     <form:input path="password" type="password" name="password" class="password" placeholder="Password"/>
+                    <form:errors path="password" />
                     <button type="submit" value="Register">Regstration</button>
                 </form:form>
 
                 </div>
             </div>
+
         </div>
         <br>
         <br>

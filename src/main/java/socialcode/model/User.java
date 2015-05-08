@@ -1,5 +1,9 @@
 package socialcode.model;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,10 +15,18 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", unique = true, nullable = false, length = 45)
     private int id;
+    @Length(min = 1, message = "First name is required")
     private String first_name;
+    @Length(min = 1, message = "Last name is required")
     private String last_name;
+    @Length.List({
+            @Length(min = 6, message = "6 chars at least"),
+            @Length(max = 30, message = "Too long password to remember")
+    })
     private String password;
     @Column(unique = true)
+    @Email(message = "Email not valid")
+    @NotEmpty
     private String email;
     @OneToOne
     @JoinColumn(name = "profile_picture")
