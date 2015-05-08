@@ -88,4 +88,11 @@ public class UserController {
         modelMap.addAttribute("isCurrent", current);
         return modelMap;
     }
+
+    @RequestMapping(value = "/account")
+    public ModelAndView account() {
+        User currentUser = userService.getCurrentUser();
+        return new ModelAndView("account");
+    }
+
 }
