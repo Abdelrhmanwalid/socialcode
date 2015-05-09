@@ -59,7 +59,19 @@ public class UserServiceImpl implements UserService {
         return success;
     }
 
+    @Transactional
     public List<User> findFollowings(User user) {
         return userRepository.findFollowing(user);
+    }
+
+    @Transactional
+    public boolean checkPassword(User user, String password){
+
+        User u = userRepository.findOne(user.getId());
+        if (u.getPassword().equals(password)){
+            return true;
+        } else {
+            return false;
+        }
     }
 }

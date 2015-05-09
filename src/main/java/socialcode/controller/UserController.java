@@ -3,6 +3,9 @@ package socialcode.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,6 +19,8 @@ import socialcode.service.PostService;
 import socialcode.service.TutorialService;
 import socialcode.service.UserService;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 
@@ -89,9 +94,43 @@ public class UserController {
         return modelMap;
     }
 
-    @RequestMapping(value = "/account")
-    public ModelAndView account() {
+    @RequestMapping(value = "/account", method = RequestMethod.GET)
+    public ModelAndView account(ModelMap modelMap) {
         User currentUser = userService.getCurrentUser();
+        modelMap.addAttribute("user", currentUser);
+        return new ModelAndView("account");
+    }
+
+    @RequestMapping(value = {"/account/password", "/account"}, method = RequestMethod.POST)
+    public ModelAndView updateAccount(@Valid @ModelAttribute("user") User user, final BindingResult binding, HttpServletRequest request) {
+
+        if (request.getRequestURI().equals("/account/password")) {
+            String oldPassword = request.getParameter("oldpassword");
+//        Security-context.xml -> password-encoder
+//		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+//		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+//        oldPassword = bCryptPasswordEncoder.encode(oldPassword);
+            if (!userService.checkPassword(user, oldPassword)) {
+                binding.addError(new FieldError(
+                        "password",
+                        "password",
+                        "The Old password is incorrect"
+                ));
+            } else if (user.getPassword().equals(oldPassword)) {
+                binding.addError(new FieldError(
+                        "password",
+                        "password",
+                        "the new Password is the same as the old one, why change?"
+                ));
+            }
+        }
+        if (binding.hasErrors()) {
+            return new ModelAndView("account");
+        }
+        String password = user.getPassword();
+        user = userService.findById(user.getId());
+        user.setPassword(password);
+        userService.save(user);
         return new ModelAndView("account");
     }
 

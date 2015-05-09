@@ -11,4 +11,5 @@ public interface PostService {
     HashMap<Post, Object> getUserPosts(User user);
     Post Save(Post post);
     List<Post> findByUsers(List<User> users);
+    Post findById(int id);
 }

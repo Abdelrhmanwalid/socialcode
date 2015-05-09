@@ -1,5 +1,6 @@
 package socialcode.model;
 
+import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -31,10 +32,13 @@ public class User {
     @OneToOne
     @JoinColumn(name = "profile_picture")
     private Image profilePicture;
+    @Type(type = "text")
+    String biography;
     @ManyToMany
     List<User> followers = new ArrayList<User>();
 
     public User() {
+
     }
 
     public User(int id, String first_name, String last_name, String password,
@@ -45,6 +49,14 @@ public class User {
         this.last_name = last_name;
         this.password = password;
         this.email = email;
+    }
+
+    public String getBiography() {
+        return biography;
+    }
+
+    public void setBiography(String biography) {
+        this.biography = biography;
     }
 
     public int getId() {

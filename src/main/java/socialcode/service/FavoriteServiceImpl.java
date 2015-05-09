@@ -3,6 +3,8 @@ package socialcode.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import socialcode.model.Favorite;
+import socialcode.model.Post;
+import socialcode.model.User;
 import socialcode.repository.FavoriteRepository;
 
 @Service("FavoriteService")
@@ -13,6 +15,13 @@ public class FavoriteServiceImpl implements FavoriteService {
 
     public Favorite save(Favorite favorite) {
         favoriteRepository.save(favorite);
+        return favorite;
+    }
+
+    public Favorite add(User user, Post post) {
+        Favorite favorite = new Favorite();
+        favorite.setPost(post);
+        favorite.setUser(user);
         return favorite;
     }
 }

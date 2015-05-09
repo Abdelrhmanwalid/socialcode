@@ -1,21 +1,22 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <div class="container">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <h3 style="padding:10px;">Update Account Information</h3>
 
-            <form class="form-horizontal">
+            <form:form commandName="user" class="form-horizontal">
                 <div class="form-group">
                     <label class="col-sm-3 control-label">First Name</label>
 
                     <div class="col-sm-9">
-                        <input type="text" name="fname" class="form-control" placeholder="first name">
+                        <form:input type="text" name="fname" class="form-control" placeholder="first name" path="first_name" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-3 control-label">Last Name</label>
 
                     <div class="col-sm-9">
-                        <input type="text" name="lname" class="form-control" placeholder="last name">
+                        <form:input type="text" name="lname" class="form-control" placeholder="last name" path="last_name" />
                     </div>
                 </div>
                 <div class="form-group">
@@ -30,7 +31,7 @@
                     <label class="col-sm-3 control-label">Biography</label>
 
                     <div class="col-sm-9">
-                        <textarea class="form-control" rows="5"></textarea>
+                        <form:textarea class="form-control" rows="5" path="biography" />
                     </div>
                 </div>
 
@@ -40,11 +41,13 @@
                         <button type="submit" class="btn btn-default">Save</button>
                     </div>
                 </div>
-            </form>
+            </form:form>
             <hr>
             <h3 style="padding:10px;">Update Password</h3>
 
-            <form class="form-horizontal">
+            <form:form commandName="user" action="/account/password"  class="form-horizontal">
+                <form:errors path="password" />
+                <form:hidden path="id" />
                 <div class="form-group">
                     <label class="col-sm-3 control-label">Old Password</label>
 
@@ -56,7 +59,7 @@
                     <label class="col-sm-3 control-label">New Password</label>
 
                     <div class="col-sm-9">
-                        <input type="password" name="newpassword" class="form-control" placeholder="new password">
+                        <form:password path="password" name="newpassword" class="form-control" placeholder="new password" />
                     </div>
                 </div>
                 <div class="form-group">
@@ -64,7 +67,7 @@
                         <button type="submit" class="btn btn-default">Save</button>
                     </div>
                 </div>
-            </form>
+            </form:form>
         </div>
 
     </div>

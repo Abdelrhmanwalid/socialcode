@@ -55,4 +55,8 @@ public class PostServiceImpl implements PostService {
         }
         return postRepository.findByUsers(users);
     }
+
+    public Post findById(int id){
+        return postRepository.findOne(id);
+    }
 }

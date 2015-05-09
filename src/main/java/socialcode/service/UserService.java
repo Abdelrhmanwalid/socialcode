@@ -20,4 +20,6 @@ public interface UserService {
     boolean removeFollower(User user, User follower);
 
     List<User> findFollowings(User user);
+
+    boolean checkPassword(User user, String password);
 }
