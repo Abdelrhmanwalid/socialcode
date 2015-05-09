@@ -42,7 +42,7 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <a onclick='swal({title: "Favorited!",  text: "You favorited this tutorial!",  timer: 5000, type: "success" });'><i
+                                        <a href="${root}/tutorial/${tutorial.id}/favorite" ><i
                                                 class="fa fa-heart"></i> Favorite </a> -
                                         <a><i class="fa fa-share"></i> Share </a> -
                                         <a><i class="fa fa-comment"></i> Comment </a>

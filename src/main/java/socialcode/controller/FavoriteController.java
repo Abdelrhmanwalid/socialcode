@@ -10,6 +10,8 @@ import socialcode.service.FavoriteService;
 import socialcode.service.PostService;
 import socialcode.service.UserService;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Controller
 public class FavoriteController {
 
@@ -20,11 +22,13 @@ public class FavoriteController {
     @Autowired
     FavoriteService favoriteService;
 
-    @RequestMapping(value = "fav_post{id}")
-    public void favorite(@PathVariable("id") int id) {
+    @RequestMapping(value = "/tutorial/{id}/favorite")
+    public String favorite(@PathVariable("id") int id, HttpServletRequest request) {
         Post post = postService.findById(id);
         User user = userService.getCurrentUser();
         favoriteService.save(favoriteService.add(user, post));
+        String referer = request.getHeader("Referer");
+        return "redirect:" + referer;
     }
 
 }
