@@ -31,7 +31,7 @@
         <property name="jpaPropertyMap">
             <map>
                 <entry key="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect"/>
-                <entry key="hibernate.hbm2ddl.auto" value="create-drop" />
+                <entry key="hibernate.hbm2ddl.auto" value="none" />
                 <entry key="hibernate.format_sql" value="true"/>
             </map>
         </property>
