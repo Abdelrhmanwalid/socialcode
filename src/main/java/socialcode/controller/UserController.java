@@ -101,37 +101,61 @@ public class UserController {
         return new ModelAndView("account");
     }
 
-    @RequestMapping(value = {"/account/password", "/account"}, method = RequestMethod.POST)
-    public ModelAndView updateAccount(@Valid @ModelAttribute("user") User user, final BindingResult binding, HttpServletRequest request) {
+    @RequestMapping(value = "/account/password", method = RequestMethod.POST)
+    public ModelAndView updatePassword(@Valid @ModelAttribute("user") User user, final BindingResult binding, HttpServletRequest request) {
 
-        if (request.getRequestURI().equals("/account/password")) {
-            String oldPassword = request.getParameter("oldpassword");
+        String oldPassword = request.getParameter("oldpassword");
+
 //        Security-context.xml -> password-encoder
 //		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 //		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 //        oldPassword = bCryptPasswordEncoder.encode(oldPassword);
-            if (!userService.checkPassword(user, oldPassword)) {
-                binding.addError(new FieldError(
-                        "password",
-                        "password",
-                        "The Old password is incorrect"
-                ));
-            } else if (user.getPassword().equals(oldPassword)) {
-                binding.addError(new FieldError(
-                        "password",
-                        "password",
-                        "the new Password is the same as the old one, why change?"
-                ));
-            }
+
+        if (!userService.checkPassword(user, oldPassword)) {
+            binding.addError(new FieldError(
+                    "password",
+                    "password",
+                    "The Old password is incorrect"
+            ));
+        } else if (user.getPassword().equals(oldPassword)) {
+            binding.addError(new FieldError(
+                    "password",
+                    "password",
+                    "the new Password is the same as the old one, why change?"
+            ));
+        } else if (user.getPassword().length() < 6){
+            binding.addError(new FieldError(
+                    "password",
+                    "password",
+                    "password length must be 6 chars at least"
+            ));
+        } else if (user.getPassword().length() > 30){
+            binding.addError(new FieldError(
+                    "password",
+                    "password",
+                    "password Is too long to remember"
+            ));
         }
+
         if (binding.hasErrors()) {
             return new ModelAndView("account");
         }
-        String password = user.getPassword();
-        user = userService.findById(user.getId());
-        user.setPassword(password);
+        user = userService.updatePassword(user);
         userService.save(user);
-        return new ModelAndView("account");
+        return new ModelAndView("redirect:/account");
+    }
+
+    @RequestMapping(value = "/account", method = RequestMethod.POST)
+    public ModelAndView updateAccount(@Valid @ModelAttribute("user") User user, final BindingResult binding) {
+
+        user = userService.updateUser(user);
+
+        if (binding.hasErrors()) {
+            return new ModelAndView("account");
+        }
+
+        userService.save(user);
+        return new ModelAndView("redirect:/account");
     }
 
 }

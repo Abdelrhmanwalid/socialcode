@@ -64,14 +64,25 @@ public class UserServiceImpl implements UserService {
         return userRepository.findFollowing(user);
     }
 
-    @Transactional
     public boolean checkPassword(User user, String password){
+        User u = findById(user.getId());
+        return u.getPassword().equals(password);
+    }
 
-        User u = userRepository.findOne(user.getId());
-        if (u.getPassword().equals(password)){
-            return true;
-        } else {
-            return false;
-        }
+    @Transactional
+    public User updatePassword(User user){
+        User u = findById(user.getId());
+        u.setPassword(user.getPassword());
+        return u;
+    }
+
+    @Transactional
+    public User updateUser(User user){
+        User u = findById(user.getId());
+        u.setFirst_name(user.getFirst_name());
+        u.setLast_name(user.getLast_name());
+        u.setBiography(user.getBiography());
+        u.setProfilePicture(user.getProfilePicture());
+        return u;
     }
 }

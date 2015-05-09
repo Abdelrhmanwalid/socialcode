@@ -22,4 +22,8 @@ public interface UserService {
     List<User> findFollowings(User user);
 
     boolean checkPassword(User user, String password);
+
+    User updatePassword(User user);
+
+    User updateUser(User user);
 }

@@ -5,11 +5,13 @@
             <h3 style="padding:10px;">Update Account Information</h3>
 
             <form:form commandName="user" class="form-horizontal">
+                <form:hidden path="id" />
                 <div class="form-group">
                     <label class="col-sm-3 control-label">First Name</label>
 
                     <div class="col-sm-9">
                         <form:input type="text" name="fname" class="form-control" placeholder="first name" path="first_name" />
+                        <form:errors path="first_name" />
                     </div>
                 </div>
                 <div class="form-group">
@@ -17,6 +19,7 @@
 
                     <div class="col-sm-9">
                         <form:input type="text" name="lname" class="form-control" placeholder="last name" path="last_name" />
+                        <form:errors path="last_name" />
                     </div>
                 </div>
                 <div class="form-group">
