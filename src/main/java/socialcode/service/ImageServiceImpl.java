@@ -38,7 +38,7 @@ public class ImageServiceImpl implements ImageService {
         if (!dir.exists())
             dir.mkdirs();
         File destination = new File(dir.getAbsolutePath() + File.separator + id);
-        ImageIO.write(src, "png", destination);
+        ImageIO.write(src, "jpg", destination);
         String url = "/img/" + id;
         Image image = new Image();
         image.setImageLocation(destination.getAbsolutePath());
@@ -58,7 +58,7 @@ public class ImageServiceImpl implements ImageService {
         Resource resource = appContext.getResource("file:" + imgSrc);
         BufferedImage img = ImageIO.read(resource.getFile());
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        ImageIO.write(img, "png", baos);
+        ImageIO.write(img, "jpg", baos);
         baos.flush();
         byte[] imageInByte = baos.toByteArray();
         byte[] encode = Base64.encodeBase64(imageInByte);

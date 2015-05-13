@@ -30,7 +30,7 @@
                             <% } %>
                             ><a href="${root}/newTutorial"><i class="fa fa-pencil"></i><span class="hidden-sm"> Tutorial</span></a></li>
                         </ul>
-                        <form class="navbar-form navbar-left" role="search">
+                        <form class="navbar-form navbar-left" role="search" method="get" action="${root}/search">
                             <div class="form-group">
                                 <input type="text" name="q" class="form-control" placeholder="Search">
                             </div>

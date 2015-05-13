@@ -9,6 +9,7 @@ import socialcode.model.Post;
 import socialcode.model.Tutorial;
 import socialcode.model.User;
 import socialcode.repository.TutorialRepository;
+import socialcode.repository.TutorialSearchRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +19,8 @@ public class TutorialServiceImpl implements TutorialService {
 
 	@Autowired
 	private TutorialRepository tutorialRepository;
+    @Autowired
+    private TutorialSearchRepository tutorialSearchRepository;
 	@Autowired
 	private UserService userService;
 	@Autowired
@@ -52,4 +55,15 @@ public class TutorialServiceImpl implements TutorialService {
 	public Tutorial findByPost(Post post) {
 		return tutorialRepository.findByPost(post);
 	}
+
+    @Override
+    public void indexTutorials() {
+        tutorialSearchRepository.indexTutorials();
+    }
+
+    @Override
+    public List<Tutorial> findByText(String text) {
+        List<Tutorial> tutorials = tutorialSearchRepository.search(text);
+        return tutorials;
+    }
 }

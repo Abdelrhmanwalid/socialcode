@@ -15,6 +15,6 @@
 <br>
 <br>
 <br>
-<img src="data:image/png;base64,<c:out value='${img}'/>" width="400" height="400"/>
+<img src="data:image/png;base64,<c:out value='${img}'/>" />
 </body>
 </html>

@@ -11,4 +11,7 @@ public interface TutorialService {
     Tutorial findById(int id);
     List<Tutorial> findByUser(User user);
     Tutorial findByPost(Post post);
+    void indexTutorials();
+    List<Tutorial> findByText(String text);
+
 }
