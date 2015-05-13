@@ -50,8 +50,8 @@ public class UploadController {
 			System.out.println(path);
 			File file = imageService.getImage(id);
 			MimetypesFileTypeMap mimeTypesMap = new MimetypesFileTypeMap();
-			String extension = mimeTypesMap.getContentType(file);
-			response.setContentType(extension);
+			String contentType = mimeTypesMap.getContentType(file);
+			response.setContentType(contentType);
 			response.setContentLength((int) file.length());
 			response.setHeader("Content-Disposition", "attachment; filename=" + file.getName());
 			FileCopyUtils.copy(new FileInputStream(file),
