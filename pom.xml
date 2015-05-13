@@ -209,6 +209,6 @@
         </dependency>
     </dependencies>
     <build>
-        <finalName>SocialCode</finalName>
+        <finalName>ROOT</finalName>
     </build>
 </project>

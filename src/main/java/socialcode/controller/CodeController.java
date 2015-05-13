@@ -16,12 +16,13 @@ import socialcode.AppConfig;
 import socialcode.helper.ProgramingLanguages;
 import socialcode.ideone.api.service.RunCodeThread;
 import socialcode.model.Code;
+import socialcode.model.User;
 import socialcode.service.CodeService;
+import socialcode.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
-import javax.xml.transform.sax.SAXSource;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -32,6 +33,8 @@ public class CodeController {
 
 	@Autowired
 	CodeService codeService;
+	@Autowired
+	UserService userService;
 
 	@RequestMapping(value = "/newCode", method = RequestMethod.GET)
 	public ModelAndView newCode(ModelMap modelMap) {
@@ -112,7 +115,11 @@ public class CodeController {
 	}
 
 	@RequestMapping(value = "code")
-	public ModelAndView codes() {
+	public ModelAndView codes(ModelMap modelMap) {
+		User user = userService.getCurrentUser();
+		List<Code> forks = codeService.findByUSer(user);
+		modelMap.addAttribute("forks", forks);
+		modelMap.addAttribute("isForkPage", false);
 		return new ModelAndView("codes").addObject("navColor", "code");
 	}
 

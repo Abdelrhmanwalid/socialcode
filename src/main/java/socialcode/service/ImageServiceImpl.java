@@ -1,23 +1,18 @@
 package socialcode.service;
 
-import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
+import org.springframework.util.MimeType;
 import org.springframework.web.multipart.MultipartFile;
 import socialcode.model.Image;
 import socialcode.repository.ImageRepository;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Random;
 
 @Service("ImageService")
 public class ImageServiceImpl implements ImageService {
@@ -25,24 +20,34 @@ public class ImageServiceImpl implements ImageService {
     @Autowired
     ImageRepository imageRepository;
 
-    public Image save(MultipartFile file) throws IOException {
-        BufferedImage src = null;
-        src = ImageIO.read(new ByteArrayInputStream(file.getBytes()));
-        // needs to be changed
-        String id = "";
-        id += new Random().nextInt(1000000);
-        id += "_";
-        id += new Date().getTime();
-        String rootPath = System.getProperty("catalina.home");
-        File dir = new File(rootPath + File.separator + "images");
-        if (!dir.exists())
-            dir.mkdirs();
-        File destination = new File(dir.getAbsolutePath() + File.separator + id);
-        ImageIO.write(src, "jpg", destination);
-        String url = "/img/" + id;
+    public Image save(MultipartFile file, String path) throws IOException {
+        InputStream is;
+        FileOutputStream os;
         Image image = new Image();
-        image.setImageLocation(destination.getAbsolutePath());
-        imageRepository.save(image);
+        try {
+            is = file.getInputStream();
+            MimeType type = MimeType.valueOf(file.getContentType());
+
+            String extension = type.getSubtype();
+
+            String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+            String name = "socialcode" + "_" + timeStamp;
+            System.out.println("name: " + name);
+            System.out.println("extension: " + extension);
+            System.out.println("path: " + path);
+            String location = path + "//" + name + "." + extension;
+            os = new FileOutputStream(location);
+            int read;
+            byte b[] = new byte[1024];
+            while ((read = is.read(b)) != -1) {
+                os.write(b, 0, read);
+            }
+            is.close();
+            os.close();
+            image.setImageLocation(location);
+            imageRepository.save(image);
+        } catch (IOException ignored) {
+        }
         return image;
     }
 
@@ -51,19 +56,8 @@ public class ImageServiceImpl implements ImageService {
         return image;
     }
 
-    public String imageSrc(Image image) throws IOException {
-        String imgSrc = image.getImageLocation();
-        ApplicationContext appContext =
-                new ClassPathXmlApplicationContext();
-        Resource resource = appContext.getResource("file:" + imgSrc);
-        BufferedImage img = ImageIO.read(resource.getFile());
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        ImageIO.write(img, "jpg", baos);
-        baos.flush();
-        byte[] imageInByte = baos.toByteArray();
-        byte[] encode = Base64.encodeBase64(imageInByte);
-        String imgStr = new String(encode);
-        baos.close();
-        return imgStr;
+    public File getImage(int id){
+        Image image = imageRepository.findOne(id);
+        return new File(image.getImageLocation());
     }
 }

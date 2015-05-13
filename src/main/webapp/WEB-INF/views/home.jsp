@@ -20,7 +20,7 @@
                                    var="tutorial"/>
                             <div class="feed row">
                                 <div class="user-pic col-md-2">
-                                    <img src="img/pp.jpg" alt="..." class="img-circle">
+                                    <img src="/vimg/${tutorial.post.user.profilePicture.id}" alt="..." class="img-circle">
                                 </div>
                                 <div class="col-md-10">
                                     <div class="row user-name">
@@ -56,7 +56,7 @@
                                    var="code"/>
                             <div class="feed row">
                                 <div class="user-pic col-md-2">
-                                    <img src="img/default.png" alt="..." class="img-circle">
+                                    <img src="/vimg/${code.user.profilePicture.id}" alt="..." class="img-circle">
                                 </div>
                                 <div class="col-md-10">
                                     <div class="row user-name">

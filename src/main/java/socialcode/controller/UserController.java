@@ -5,22 +5,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-import socialcode.model.Code;
-import socialcode.model.Post;
-import socialcode.model.Tutorial;
-import socialcode.model.User;
-import socialcode.service.CodeService;
-import socialcode.service.PostService;
-import socialcode.service.TutorialService;
-import socialcode.service.UserService;
+import socialcode.model.*;
+import socialcode.service.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
@@ -35,6 +28,8 @@ public class UserController {
     PostService postService;
     @Autowired
     TutorialService tutorialService;
+    @Autowired
+    ImageService imageService;
 
 
     @RequestMapping(value = "/profile")
@@ -123,13 +118,13 @@ public class UserController {
                     "password",
                     "the new Password is the same as the old one, why change?"
             ));
-        } else if (user.getPassword().length() < 6){
+        } else if (user.getPassword().length() < 6) {
             binding.addError(new FieldError(
                     "password",
                     "password",
                     "password length must be 6 chars at least"
             ));
-        } else if (user.getPassword().length() > 30){
+        } else if (user.getPassword().length() > 30) {
             binding.addError(new FieldError(
                     "password",
                     "password",
@@ -146,8 +141,19 @@ public class UserController {
     }
 
     @RequestMapping(value = "/account", method = RequestMethod.POST)
-    public ModelAndView updateAccount(@Valid @ModelAttribute("user") User user, final BindingResult binding) {
+    public ModelAndView updateAccount(@Valid @ModelAttribute("user") User user, final BindingResult binding,
+                                      @RequestParam(value = "file", required = false) MultipartFile file, HttpServletRequest request)
+            throws IOException {
 
+        Image image;
+        if (file.getSize() > 0) {
+            String path = request.getSession().getServletContext().getRealPath("");
+            image = imageService.save(file, path);
+
+        } else {
+            image = userService.findById(user.getId()).getProfilePicture();
+        }
+        user.setProfilePicture(image);
         user = userService.updateUser(user);
 
         if (binding.hasErrors()) {

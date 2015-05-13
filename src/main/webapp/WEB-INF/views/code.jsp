@@ -28,7 +28,7 @@
 			<div class="row">
 				<label class="col-md-2">Coder</label>
 				<div class="col-md-10">
-					<a href="">${code.user.first_name} ${code.user.last_name}</a>
+					<a href="/user/${code.user.id}">${code.user.first_name} ${code.user.last_name}</a>
 				</div>
 			</div>
 			<div class="row">
