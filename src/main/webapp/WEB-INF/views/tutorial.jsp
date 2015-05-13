@@ -30,7 +30,7 @@
 			<div class="col-md-8 col-md-offset-2">
 				<div class="row">
 					<div class="col-md-4" style="text-align: center;">
-						<img class="img-circle" src="<c:url value="/assets/img/default.png" />"
+						<img class="img-circle" src="/vimg/${tutorial.post.user.profilePicture.id}"
 							style="height: 150px; width: 150px;" />
 					</div>
 					<div class="col-md-8">

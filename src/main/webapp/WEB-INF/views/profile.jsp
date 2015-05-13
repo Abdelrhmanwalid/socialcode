@@ -7,7 +7,7 @@
 <div class="container">
     <div class="profile-header">
         <div class="top-section">
-            <img class="img-circle" src="img/pp.jpg" alt="Profile Picture"/>
+            <img class="img-circle" src="/vimg/${user.profilePicture.id}" alt="Profile Picture"/>
         </div>
         <div class="user-info">
             <div class="row title">
@@ -28,7 +28,7 @@
                 </c:if>
             </div>
             <div class="user-about">
-                Bio goes here ....
+                ${user.biography}
             </div>
         </div>
         <div class="menu row">
@@ -61,7 +61,7 @@
                 <div class="post row">
                     <div class="post-header row">
                         <div class="user-pic col-md-1">
-                            <img src="img/pp.jpg" alt="..." class="img-circle">
+                            <img src="/vimg/${user.profilePicture.id}" alt="" class="img-circle">
                         </div>
                         <div class="user-info col-md-3">
                             <div class="user-name">
@@ -104,7 +104,7 @@
                 <div class="post row">
                     <div class="post-header row">
                         <div class="user-pic col-md-1">
-                            <img src="img/pp.jpg" alt="..." class="img-circle">
+                            <img src="/vimg/${user.profilePicture.id}" alt="..." class="img-circle">
                         </div>
                         <div class="user-info col-md-3">
 

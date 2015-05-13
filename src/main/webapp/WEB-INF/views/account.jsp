@@ -1,10 +1,11 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <div class="container">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <h3 style="padding:10px;">Update Account Information</h3>
 
-            <form:form commandName="user" class="form-horizontal">
+            <form:form commandName="user" class="form-horizontal" enctype="multipart/form-data">
                 <form:hidden path="id" />
                 <div class="form-group">
                     <label class="col-sm-3 control-label">First Name</label>
@@ -26,7 +27,8 @@
                     <label class="col-sm-3 control-label">Profile Picture</label>
 
                     <div class="col-sm-9">
-                        <input type="submit" value="Upload"> Press here to upload the file!
+                        <input type="file" name="file">
+                        <%--<input type="submit" value="Upload"> Press here to upload the file!--%>
                     </div>
                 </div>
 
@@ -44,6 +46,7 @@
                         <button type="submit" class="btn btn-default">Save</button>
                     </div>
                 </div>
+                <sec:csrfInput/>
             </form:form>
             <hr>
             <h3 style="padding:10px;">Update Password</h3>
