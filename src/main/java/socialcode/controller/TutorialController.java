@@ -56,7 +56,7 @@ public class TutorialController {
 		Tutorial tutorial;
 		tutorial = tutorialService.findById(id);
 		User user = tutorial.getPost().getUser();
-		List<Tag> tags = tutorialTagsService.findByTagTutorial(tutorial);
+		List<Tag> tags = tutorialTagsService.findTagByTutorial(tutorial);
 		if (tags.get(0).getTag().length() == 0){
 			tags.remove(0);
 		}

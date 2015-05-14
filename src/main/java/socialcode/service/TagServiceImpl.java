@@ -29,7 +29,6 @@ public class TagServiceImpl implements TagService {
                 tag = save(tag);
             }
             tags.add(tag);
-            System.out.println(tag.getTag());
         }
         return tags;
     }

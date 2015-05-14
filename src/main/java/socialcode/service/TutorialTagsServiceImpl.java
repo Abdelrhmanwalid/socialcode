@@ -27,8 +27,11 @@ public class TutorialTagsServiceImpl implements TutorialTagsService {
         save(tutorialTags);
     }
 
-    public List<Tag> findByTagTutorial(Tutorial tutorial){
-        List<Tag> tags = tutorialTagsRepository.findTutorialByTag(tutorial);
-        return tags;
+    public List<Tag> findTagByTutorial(Tutorial tutorial){
+        return tutorialTagsRepository.findTagByTutorial(tutorial);
+    }
+
+    public List<Tutorial> findTutorialByTag(Tag tag){
+        return tutorialTagsRepository.findTutorialByTag(tag);
     }
 }

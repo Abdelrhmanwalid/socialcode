@@ -12,5 +12,8 @@ import java.util.List;
 @Repository("TutorialTagsRepository")
 public interface TutorialTagsRepository extends JpaRepository<TutorialTags, Integer> {
     @Query("select t.tag from TutorialTags t where t.tutorial = ?1")
-    List<Tag> findTutorialByTag(Tutorial tutorial);
+    List<Tag> findTagByTutorial(Tutorial tutorial);
+
+    @Query("select t.tutorial from TutorialTags t where t.tag = ?1")
+    List<Tutorial> findTutorialByTag(Tag tag);
 }
