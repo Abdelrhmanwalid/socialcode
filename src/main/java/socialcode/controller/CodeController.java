@@ -135,7 +135,7 @@ public class CodeController {
 
 	@ResponseBody
 	@RequestMapping(value = "code/embed")
-	public String embed(HttpServletResponse response,
+	public String embed(HttpServletResponse response,HttpServletRequest request,
 			@RequestParam(value = "url", required = false) String url) {
 
 		// not the perfect way but i was in a hurry.
@@ -150,9 +150,10 @@ public class CodeController {
 			Map<String, String> map = new HashMap<String, String>();
 			map.put("id", "");
 
-			//remove "/
-			// " from src to work for you
-			map.put("html", "<iframe src=\"/socialcode/code/embedjs/"
+
+
+
+			map.put("html", "<iframe src=\""+ request.getContextPath() +"/code/embedjs/"
 							+id + "\" frameborder=\"0\" scrolling=\"no\" "
 							+" width=\"100%\" onload='resizeIframe(this)' frameborder=\"0\""
 							+ "style=\"border: 1px solid #c0c0c0;"

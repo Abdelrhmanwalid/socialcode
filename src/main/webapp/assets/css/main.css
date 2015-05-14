@@ -4,7 +4,7 @@
 body{
     font-family: 'Montserrat', sans-serif;
     font-weight: 400;
-    background: none repeat scroll 0% 0% #white;
+    background: none repeat scroll 0% 0% #ffffff;
      z-index:10;
 }
 
@@ -22,8 +22,7 @@ header{
     background-color: white;
     text-align: center;
     z-index: 999;
-    shape-outside: auto;
-    max-height: 60px; 
+    max-height: 60px;
     border-bottom: 1px solid #E4E4E4;
 }
 
@@ -70,13 +69,12 @@ body>.container{
 }
 footer{
     padding: 50px;
-    visibility: ;
     text-align: center;
 }
 
-feed{
-    background-color: #999;
-}
+/*.feed{*/
+    /*background-color: #999;*/
+/*}*/
 .user-pic {
     text-align: center;
 }
@@ -246,14 +244,16 @@ footer li{
     line-height: 1.5;
 }
 
-.tut-container > h1,.tut-container > h2,.tut-container > h3,.tut-container > h4{
-    font-weight: 300;
-    line-height: 1.25;
+.tut-container h3{
+    font-size: 26px;
+}
+.tut-container h4{
+    font-size: 22px;
 }
 .tut-container > p{
     font-weight: 300;
     line-height: 1.55;
-    font-size: 18px;
+    /*font-size: 18px;*/
 }
 
 .medium-editor-insert-plugin .medium-insert-buttons .medium-insert-buttons-addons li a .fa{

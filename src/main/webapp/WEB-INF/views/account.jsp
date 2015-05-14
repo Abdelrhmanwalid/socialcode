@@ -48,32 +48,32 @@
                 </div>
                 <sec:csrfInput/>
             </form:form>
-            <hr>
-            <h3 style="padding:10px;">Update Password</h3>
+            <%--<hr>--%>
+            <%--<h3 style="padding:10px;">Update Password</h3>--%>
 
-            <form:form commandName="user" action="/account/password"  class="form-horizontal">
-                <form:errors path="password" />
-                <form:hidden path="id" />
-                <div class="form-group">
-                    <label class="col-sm-3 control-label">Old Password</label>
+            <%--<form:form commandName="user" action="/account/password"  class="form-horizontal">--%>
+                <%--<form:errors path="password" />--%>
+                <%--<form:hidden path="id" />--%>
+                <%--<div class="form-group">--%>
+                    <%--<label class="col-sm-3 control-label">Old Password</label>--%>
 
-                    <div class="col-sm-9">
-                        <input type="password" name="oldpassword" class="form-control" placeholder="old password">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label">New Password</label>
+                    <%--<div class="col-sm-9">--%>
+                        <%--<input type="password" name="oldpassword" class="form-control" placeholder="old password">--%>
+                    <%--</div>--%>
+                <%--</div>--%>
+                <%--<div class="form-group">--%>
+                    <%--<label class="col-sm-3 control-label">New Password</label>--%>
 
-                    <div class="col-sm-9">
-                        <form:password path="password" name="newpassword" class="form-control" placeholder="new password" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-offset-3 col-sm-9">
-                        <button type="submit" class="btn btn-default">Save</button>
-                    </div>
-                </div>
-            </form:form>
+                    <%--<div class="col-sm-9">--%>
+                        <%--<form:password path="password" name="newpassword" class="form-control" placeholder="new password" />--%>
+                    <%--</div>--%>
+                <%--</div>--%>
+                <%--<div class="form-group">--%>
+                    <%--<div class="col-sm-offset-3 col-sm-9">--%>
+                        <%--<button type="submit" class="btn btn-default">Save</button>--%>
+                    <%--</div>--%>
+                <%--</div>--%>
+            <%--</form:form>--%>
         </div>
 
     </div>
