@@ -5,7 +5,7 @@
 					<div class="col-md-8">
 						 <h3>Who we are ?</h3>
 						 <ul class="list-unstyled">
-						 	<li>Abdelrhman Waleed</li>
+						 	<li>Abdelrhman Walid</li>
 						 	<li>Kareem AbdAllah</li>
 						 	<li>Mohamed Farahat</li>
 						 	<li>Mohamed Khairy</li>

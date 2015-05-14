@@ -27,7 +27,7 @@
                     <label class="col-sm-3 control-label">Profile Picture</label>
 
                     <div class="col-sm-9">
-                        <input type="file" name="file">
+                        <input type="file" name="file" accept="image/*">
                         <%--<input type="submit" value="Upload"> Press here to upload the file!--%>
                     </div>
                 </div>
