@@ -1,6 +1,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <body>
+
+<c:redirect url="${pageContext.request.contextPath}/home"/>
+
 	<h3>messages, whatever</h3>
 	<a href="newCode">new code</a>
 	<a href="upload">upload</a>

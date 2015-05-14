@@ -16,7 +16,7 @@
                 <c:forEach items="${tutorials}" var="tutorial">
                     <div class="feed row">
                         <div class="user-pic col-md-2">
-                            <img src="img/pp.jpg" alt="..." class="img-circle">
+                            <img src="/vimg/${tutorial.post.user.profilePicture.id}" alt="..." class="img-circle">
                         </div>
                         <div class="col-md-10">
                             <div class="row user-name">
@@ -38,9 +38,9 @@
                             </div>
                             <div class="row">
                                 <a href="${root}/tutorial/${tutorial.id}/favorite"><i
-                                        class="fa fa-heart"></i> Favorite </a>
-                                <%--<a><i class="fa fa-share"></i> Share </a> ---%>
-                                <%--<a><i class="fa fa-comment"></i> Comment </a>--%>
+                                        class="fa fa-heart"></i> Favorite </a> -
+                                <a><i class="fa fa-share"></i> Share </a> -
+                                <a><i class="fa fa-comment"></i> Comment </a>
                             </div>
                         </div>
                     </div>

@@ -43,7 +43,7 @@
 					$(function() {
 						$('.tut-title').mediumInsert({
 							editor : null,
-							enabled : false,
+							enabled : false
 						});
 						$('.tut-container')
 								.mediumInsert(
