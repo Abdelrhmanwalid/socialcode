@@ -32,28 +32,13 @@ public class UserController {
     ImageService imageService;
 
 
-    @RequestMapping(value = "/profile")
-    public ModelAndView profile(ModelMap modelMap) {
-        User user = userService.getCurrentUser();
-        modelMap = createUserModelMap(user, modelMap, true);
-
-        List<Post> postsList = postService.findByUser(user);
-        HashMap<Post, Object> postsWithData = postService.getUserPosts(user);
-        modelMap.addAttribute("postsList", postsList);
-        modelMap.addAttribute("PostsWithData", postsWithData);
-
-        return new ModelAndView("profile").addObject("navColor", "profile");
-    }
-
     @RequestMapping(value = "/user/{$id}", method = RequestMethod.GET)
     public ModelAndView user(@PathVariable("$id") int id, ModelMap modelMap) {
         if (userService.getCurrentUser() == userService.findById(id)) {
             return new ModelAndView("redirect:/profile");
         }
         User user = userService.findById(id);
-        User currentUser = userService.getCurrentUser();
         modelMap = createUserModelMap(user, modelMap, false);
-        modelMap.addAttribute("currentUser", currentUser);
 
         List<Post> postsList = postService.findByUser(user);
         HashMap<Post, Object> postsWithData = postService.getUserPosts(user);
@@ -82,11 +67,26 @@ public class UserController {
     ModelMap createUserModelMap(User user, ModelMap modelMap, boolean current) {
         List<Code> codes = codeService.findByUSer(user);
         List<Tutorial> tutorials = tutorialService.findByUser(user);
+        User currentUser = userService.getCurrentUser();
+        modelMap.addAttribute("currentUser", currentUser);
         modelMap.addAttribute("user", user);
         modelMap.addAttribute("tutorials", tutorials);
         modelMap.addAttribute("codes", codes);
         modelMap.addAttribute("isCurrent", current);
         return modelMap;
+    }
+
+    @RequestMapping(value = "/profile")
+    public ModelAndView profile(ModelMap modelMap) {
+        User user = userService.getCurrentUser();
+        modelMap = createUserModelMap(user, modelMap, true);
+
+        List<Post> postsList = postService.findByUser(user);
+        HashMap<Post, Object> postsWithData = postService.getUserPosts(user);
+        modelMap.addAttribute("postsList", postsList);
+        modelMap.addAttribute("PostsWithData", postsWithData);
+
+        return new ModelAndView("profile").addObject("navColor", "profile");
     }
 
     @RequestMapping(value = "/account", method = RequestMethod.GET)

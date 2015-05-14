@@ -1,6 +1,7 @@
 package socialcode.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "Posts")
@@ -14,6 +15,16 @@ public class Post {
     @ManyToOne
     @JoinColumn(nullable = false)
     private User user;
+    @ManyToMany
+    List<User> favoritedBy;
+
+    public List<User> getFavoritedBy() {
+        return favoritedBy;
+    }
+
+    public void setFavoritedBy(List<User> favoritedBy) {
+        this.favoritedBy = favoritedBy;
+    }
 
     public User getUser() {
         return user;

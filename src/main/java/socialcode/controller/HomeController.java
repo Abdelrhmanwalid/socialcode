@@ -34,6 +34,7 @@ public class HomeController {
 
 		modelMap.addAttribute("postsList", postsList);
 		modelMap.addAttribute("PostsWithData", postsWithData);
+		modelMap.addAttribute("currentUser", currentUser);
 
 		return new ModelAndView("home").addObject("navColor","home");
 	}

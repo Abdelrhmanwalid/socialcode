@@ -59,4 +59,22 @@ public class PostServiceImpl implements PostService {
     public Post findById(int id){
         return postRepository.findOne(id);
     }
+
+    public void favorite(Post post, User user){
+        List<User> users = post.getFavoritedBy();
+        users.add(user);
+        Save(post);
+    }
+
+    public void unfavorite(Post post, User user){
+        List<User> users = post.getFavoritedBy();
+        users.remove(user);
+        Save(post);
+    }
+
+    public List<User> findFavoritesByUser(User user){
+        List<User> users;
+        users = postRepository.findFavoritesByUser(user);
+        return users;
+    }
 }

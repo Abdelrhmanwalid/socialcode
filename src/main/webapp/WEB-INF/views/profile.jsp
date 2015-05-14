@@ -90,8 +90,16 @@
                     </div>
                     <div class="post-footer">
                         <div class="row">
-                            <a href="${root}/tutorial/${tutorial.id}/favorite" ><i
-                                    class="fa fa-heart"></i> Favorite </a> -
+                            <c:choose>
+                                <c:when test="${post.favoritedBy.contains(currentUser)}">
+                                    <a href="${root}/post/${post.id}/favorite" ><i
+                                            class="fa fa-heart-o"></i> UnFavorite </a> -
+                                </c:when>
+                                <c:otherwise>
+                                    <a href="${root}/post/${post.id}/favorite" ><i
+                                            class="fa fa-heart"></i> Favorite </a> -
+                                </c:otherwise>
+                            </c:choose>
                             <a><i class="fa fa-share"></i> Share </a> -
                             <a><i class="fa fa-comment"></i> Comment </a>
                         </div>
@@ -134,8 +142,16 @@
                     </div>
                     <div class="post-footer">
                         <div class="row">
-                            <a onclick='swal({title: "Favorited!",  text: "You favorited this tutorial!",  timer: 5000, type: "success" });'><i
-                                    class="fa fa-heart"></i> Favorite </a> -
+                            <c:choose>
+                                <c:when test="${post.favoritedBy.contains(currentUser)}">
+                                    <a href="${root}/post/${post.id}/favorite" ><i
+                                            class="fa fa-heart-o"></i> UnFavorite </a> -
+                                </c:when>
+                                <c:otherwise>
+                                    <a href="${root}/post/${post.id}/favorite" ><i
+                                            class="fa fa-heart"></i> Favorite </a> -
+                                </c:otherwise>
+                            </c:choose>
                             <a><i class="fa fa-share"></i> Share </a> -
                             <a><i class="fa fa-comment"></i> Comment </a>
                         </div>

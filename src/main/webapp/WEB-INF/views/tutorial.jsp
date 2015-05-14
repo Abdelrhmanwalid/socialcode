@@ -37,11 +37,10 @@
                     </div>
                     <div class="col-md-8">
                         <h3>
-                            <a href="">${user.first_name} ${user.last_name}</a>
+                            <a href="${root}/user/${user.id}">${user.first_name} ${user.last_name}</a>
                         </h3>
 
-                        <p>Love coding like a ninja. C# JavaScript NodeJS and more...
-                        </p>
+                        <p>${user.biography}</p>
                     </div>
                 </div>
 

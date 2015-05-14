@@ -32,9 +32,6 @@ public class ImageServiceImpl implements ImageService {
 
             String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
             String name = "socialcode" + "_" + timeStamp;
-            System.out.println("name: " + name);
-            System.out.println("extension: " + extension);
-            System.out.println("path: " + path);
             String location = path + "//" + name + "." + extension;
             os = new FileOutputStream(location);
             int read;
@@ -52,8 +49,7 @@ public class ImageServiceImpl implements ImageService {
     }
 
     public Image findById(int id) {
-        Image image = imageRepository.findOne(id);
-        return image;
+        return imageRepository.findOne(id);
     }
 
     public File getImage(int id){

@@ -57,6 +57,9 @@ public class TutorialController {
 		tutorial = tutorialService.findById(id);
 		User user = tutorial.getPost().getUser();
 		List<Tag> tags = tutorialTagsService.findByTagTutorial(tutorial);
+		if (tags.get(0).getTag().length() == 0){
+			tags.remove(0);
+		}
 		modelMap.addAttribute("tags", tags);
 		modelMap.addAttribute("user", user);
 		modelMap.addAttribute("tutorial", tutorial);

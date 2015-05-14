@@ -56,12 +56,10 @@ public class TutorialServiceImpl implements TutorialService {
 		return tutorialRepository.findByPost(post);
 	}
 
-    @Override
     public void indexTutorials() {
         tutorialSearchRepository.indexTutorials();
     }
 
-    @Override
     public List<Tutorial> findByText(String text) {
         List<Tutorial> tutorials = tutorialSearchRepository.search(text);
         return tutorials;

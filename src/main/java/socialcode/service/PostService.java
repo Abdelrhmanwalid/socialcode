@@ -12,4 +12,7 @@ public interface PostService {
     Post Save(Post post);
     List<Post> findByUsers(List<User> users);
     Post findById(int id);
+    void favorite(Post post, User user);
+    void unfavorite(Post post, User user);
+    List<User> findFavoritesByUser(User user);
 }
