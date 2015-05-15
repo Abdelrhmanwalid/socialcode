@@ -32,25 +32,142 @@
             </div>
         </div>
         <div class="menu row">
-            <div class="menu-item col-md-4">
+            <div class="menu-item col-md-3">
                 <small class="menu-label row">
                     Codes
                 </small>
                 ${fn:length(codes)}
             </div>
-            <div class="menu-item col-md-4">
+            <div class="menu-item col-md-3">
                 <small class="menu-label row">
                     Tutorials
                 </small>
                 ${fn:length(tutorials)}
             </div>
-            <div class="menu-item col-md-4">
+            <div class="menu-item col-md-3">
                 <small class="menu-label row">
                     Followers
                 </small>
-                ${fn:length(user.followers)}
+                <a class="" data-toggle="modal" data-target="#followerModel">
+                    ${fn:length(user.followers)}
+                </a>
+            </div>
+            <div class="menu-item col-md-3">
+                <small class="menu-label row">
+                    Favorited
+                </small>
+                <a class="" data-toggle="modal" data-target="#favModel">
+                    34
+                </a>
             </div>
         </div>
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="followerModel" tabindex="-1" role="dialog" aria-labelledby="followerModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="followerModalLabel">Followers</h4>
+                    </div>
+                    <div class="modal-body">
+
+
+                        <div class="row">
+                            <div class="col-md-1">
+                                <a href="#">
+                                    <img src="img/pp.jpg" style="height: 40px;width: 40px;" alt="..."
+                                         class="img-circle">
+                                </a>
+                            </div>
+                            <div class="col-md-8">
+                                <h4 class="">Media heading</h4>
+                            </div>
+                        </div>
+                        <hr/>
+                        <div class="row">
+                            <div class="col-md-1">
+                                <a href="#">
+                                    <img src="img/pp.jpg" style="height: 40px;width: 40px;" alt="..."
+                                         class="img-circle">
+
+                                </a>
+                            </div>
+                            <div class="col-md-8">
+                                <h4 class="">Media heading</h4>
+                            </div>
+                        </div>
+                        <hr/>
+                        <div class="row">
+                            <div class="col-md-1">
+                                <a href="#">
+                                    <img src="img/pp.jpg" style="height: 40px;width: 40px;" alt="..."
+                                         class="img-circle">
+
+                                </a>
+                            </div>
+                            <div class="col-md-8">
+                                <h4 class="">Media heading</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Save changes</button>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="favModel" tabindex="-1" role="dialog" aria-labelledby="favModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="favModalLabel">Favorited Posts</h4>
+                    </div>
+                    <div class="modal-body" style="margin:10px;">
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h4><a href="">How to setup get ?</a></h4>
+                            </div>
+                            <div class="cont col-md-12"> We can make thisf n divides a number that is g code run faster
+                                by noticing that we only need to check divisibility for values of i that are less or
+                                equal to the square root of n (call this m). If n divides a number that is greater than
+                                m then the result of that division will be some number less than m and thus n will also
+                                divide a number less or equal to....Continue
+                            </div>
+                        </div>
+
+                        <hr/>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h4><a href="">How to setup get ?</a></h4>
+                            </div>
+                            <div class="cont col-md-12"> We can make thisf n divides a number that is g code run faster
+                                by noticing that we only need to check divisibility for values of i that are less or
+                                equal to the square root of n (call this m). If n divides a number that is greater than
+                                m then the result of that division will be some number less than m and thus n will also
+                                divide a number less or equal to....Continue
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Save changes</button>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+
+
     </div>
     <hr>
     <div class="profile-container">
@@ -66,7 +183,7 @@
                         <div class="user-info col-md-3">
                             <div class="user-name">
                                 <a href="${root}/user/${post.user.id}">
-                                    ${post.user.first_name} ${post.user.last_name}
+                                        ${post.user.first_name} ${post.user.last_name}
                                 </a>
                             </div>
                             <div class="post-time">
@@ -92,11 +209,11 @@
                         <div class="row">
                             <c:choose>
                                 <c:when test="${post.favoritedBy.contains(currentUser)}">
-                                    <a href="${root}/post/${post.id}/favorite" ><i
+                                    <a href="${root}/post/${post.id}/favorite"><i
                                             class="fa fa-heart-o"></i> UnFavorite </a> -
                                 </c:when>
                                 <c:otherwise>
-                                    <a href="${root}/post/${post.id}/favorite" ><i
+                                    <a href="${root}/post/${post.id}/favorite"><i
                                             class="fa fa-heart"></i> Favorite </a> -
                                 </c:otherwise>
                             </c:choose>
@@ -118,8 +235,8 @@
 
                             <div class="user-name">
                                 <a href="${root}/user/${post.user.id}">
-                                    ${post.user.first_name} ${post.user.last_name}
-                            </a>
+                                        ${post.user.first_name} ${post.user.last_name}
+                                </a>
                             </div>
                             <div class="post-time">
                                 <c:set var="time" value="${tutorial.created_at}"/>
@@ -144,11 +261,11 @@
                         <div class="row">
                             <c:choose>
                                 <c:when test="${post.favoritedBy.contains(currentUser)}">
-                                    <a href="${root}/post/${post.id}/favorite" ><i
+                                    <a href="${root}/post/${post.id}/favorite"><i
                                             class="fa fa-heart-o"></i> UnFavorite </a> -
                                 </c:when>
                                 <c:otherwise>
-                                    <a href="${root}/post/${post.id}/favorite" ><i
+                                    <a href="${root}/post/${post.id}/favorite"><i
                                             class="fa fa-heart"></i> Favorite </a> -
                                 </c:otherwise>
                             </c:choose>
