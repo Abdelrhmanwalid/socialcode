@@ -44,7 +44,7 @@ public class PostServiceImpl implements PostService {
     }
 
     public Post Save(Post post) {
-        postRepository.save(post);
+        post = postRepository.save(post);
         return post;
     }
 
@@ -72,9 +72,9 @@ public class PostServiceImpl implements PostService {
         Save(post);
     }
 
-    public List<User> findFavoritesByUser(User user){
-        List<User> users;
-        users = postRepository.findFavoritesByUser(user);
-        return users;
+    public List<Post> findFavoritesByUser(User user){
+        List<Post> posts;
+        posts = postRepository.findFavoritesByUser(user);
+        return posts;
     }
 }

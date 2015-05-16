@@ -14,5 +14,5 @@ public interface PostService {
     Post findById(int id);
     void favorite(Post post, User user);
     void unfavorite(Post post, User user);
-    List<User> findFavoritesByUser(User user);
+    List<Post> findFavoritesByUser(User user);
 }

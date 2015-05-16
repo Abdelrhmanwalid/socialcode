@@ -34,11 +34,11 @@ public class Code {
     private String output;
     private String status;
     private boolean runnable;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Code parent;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Post post;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private User user;
     private Date created_at;
     private Date updated_at;

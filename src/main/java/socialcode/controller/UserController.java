@@ -8,12 +8,14 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import socialcode.helper.PostTypes;
 import socialcode.model.*;
 import socialcode.service.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -68,6 +70,14 @@ public class UserController {
         List<Code> codes = codeService.findByUSer(user);
         List<Tutorial> tutorials = tutorialService.findByUser(user);
         User currentUser = userService.getCurrentUser();
+        List<Post> favPosts = postService.findFavoritesByUser(user);
+        List<Tutorial> favs = new ArrayList<Tutorial>();
+        for (Post post : favPosts){
+            if (post.getType().equals(PostTypes.TOUTRIAL.toString())){
+                favs.add(tutorialService.findByPost(post));
+            }
+        }
+        modelMap.addAttribute("favs", favs);
         modelMap.addAttribute("currentUser", currentUser);
         modelMap.addAttribute("user", user);
         modelMap.addAttribute("tutorials", tutorials);

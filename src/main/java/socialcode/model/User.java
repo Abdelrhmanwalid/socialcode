@@ -29,12 +29,12 @@ public class User {
     @Email(message = "Email not valid")
     @NotEmpty
     private String email;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "profile_picture")
     private Image profilePicture;
     @Type(type = "text")
     String biography;
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     List<User> followers = new ArrayList<User>();
 
     public User() {

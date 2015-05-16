@@ -54,10 +54,10 @@
             </div>
             <div class="menu-item col-md-3">
                 <small class="menu-label row">
-                    Favorited
+                    Favorites
                 </small>
                 <a class="" data-toggle="modal" data-target="#favModel">
-                    34
+                    ${fn:length(favs)}
                 </a>
             </div>
         </div>
@@ -74,45 +74,22 @@
                         <h4 class="modal-title" id="followerModalLabel">Followers</h4>
                     </div>
                     <div class="modal-body">
-
-
+                        <c:forEach items="${user.followers}" var="follower">
                         <div class="row">
                             <div class="col-md-1">
-                                <a href="#">
-                                    <img src="img/pp.jpg" style="height: 40px;width: 40px;" alt="..."
+                                <a href="/user/${follower.id}">
+                                    <img src="/vimg/${follower.profilePicture.id}" style="height: 40px;width: 40px;" alt="..."
                                          class="img-circle">
                                 </a>
                             </div>
                             <div class="col-md-8">
-                                <h4 class="">Media heading</h4>
+                                <a href="/user/${follower.id}">
+                                <h4 class="">${follower.first_name} ${follower.last_name}</h4>
+                                </a>
                             </div>
                         </div>
                         <hr/>
-                        <div class="row">
-                            <div class="col-md-1">
-                                <a href="#">
-                                    <img src="img/pp.jpg" style="height: 40px;width: 40px;" alt="..."
-                                         class="img-circle">
-
-                                </a>
-                            </div>
-                            <div class="col-md-8">
-                                <h4 class="">Media heading</h4>
-                            </div>
-                        </div>
-                        <hr/>
-                        <div class="row">
-                            <div class="col-md-1">
-                                <a href="#">
-                                    <img src="img/pp.jpg" style="height: 40px;width: 40px;" alt="..."
-                                         class="img-circle">
-
-                                </a>
-                            </div>
-                            <div class="col-md-8">
-                                <h4 class="">Media heading</h4>
-                            </div>
-                        </div>
+                        </c:forEach>
                     </div>
                     <!-- <div class="modal-footer">
                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -122,42 +99,25 @@
             </div>
         </div>
 
-        <div class="modal fade" id="favModel" tabindex="-1" role="dialog" aria-labelledby="favModalLabel"
-             aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="favModalLabel">Favorited Posts</h4>
-                    </div>
-                    <div class="modal-body" style="margin:10px;">
+            <div class="modal fade" id="favModel" tabindex="-1" role="dialog" aria-labelledby="favModalLabel"
+                 aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="favModalLabel">Favorited Posts</h4>
+                        </div>
+                        <div class="modal-body" style="margin:10px;">
 
+                        <c:forEach items="${favs}" var="fav">
                         <div class="row">
                             <div class="col-md-12">
-                                <h4><a href="">How to setup get ?</a></h4>
-                            </div>
-                            <div class="cont col-md-12"> We can make thisf n divides a number that is g code run faster
-                                by noticing that we only need to check divisibility for values of i that are less or
-                                equal to the square root of n (call this m). If n divides a number that is greater than
-                                m then the result of that division will be some number less than m and thus n will also
-                                divide a number less or equal to....Continue
+                                <h4><a href="/tutorial/${fav.id}">${fav.title}</a></h4>
                             </div>
                         </div>
-
+                        </c:forEach>
                         <hr/>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <h4><a href="">How to setup get ?</a></h4>
-                            </div>
-                            <div class="cont col-md-12"> We can make thisf n divides a number that is g code run faster
-                                by noticing that we only need to check divisibility for values of i that are less or
-                                equal to the square root of n (call this m). If n divides a number that is greater than
-                                m then the result of that division will be some number less than m and thus n will also
-                                divide a number less or equal to....Continue
-                            </div>
-                        </div>
-
                     </div>
                     <!-- <div class="modal-footer">
                       <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

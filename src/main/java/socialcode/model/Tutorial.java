@@ -5,27 +5,19 @@ import org.hibernate.annotations.Type;
 import javax.persistence.*;
 import java.util.Date;
 
-import org.hibernate.search.annotations.Indexed;
-import org.hibernate.search.annotations.Field;
-import org.hibernate.search.annotations.Index;
-import org.hibernate.search.annotations.Analyze;
-import org.hibernate.search.annotations.Store;
 
 @Entity
-@Indexed
 @Table(name = "Tutorials")
 public class Tutorial {
 
     @Id
     @GeneratedValue
     private int id;
-    @Field(index=Index.YES, analyze=Analyze.YES, store=Store.NO)
     private String title;
     @Type(type = "text")
-    @Field(index=Index.YES, analyze=Analyze.YES, store=Store.NO)
     private String text;
-    @OneToOne
-    @JoinColumn(nullable = false)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(nullable = false, unique = true)
     private Post post;
 
     private Date created_at;

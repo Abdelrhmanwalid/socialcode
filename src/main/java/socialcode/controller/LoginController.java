@@ -33,7 +33,6 @@ public class LoginController {
         if(binding.hasErrors()) {
             return new ModelAndView("loginNregister");
         }
-
 //		Security-context.xml -> password-encoder
 //		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 //		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));

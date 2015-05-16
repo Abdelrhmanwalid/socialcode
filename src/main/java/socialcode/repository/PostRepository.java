@@ -18,7 +18,7 @@ public interface PostRepository extends JpaRepository<Post, Integer> {
     List<Post> findByUsers(List<User> users);
 
     @Query("select p from Post p where ?1 member p.favoritedBy")
-    List<User> findFavoritesByUser(User user);
+    List<Post> findFavoritesByUser(User user);
 
 //    @Query("select t from Tutorial t where ?1 member t.tags")
 //    List<Post> findByTag(String tag);

@@ -12,10 +12,10 @@ public class Post {
     private int id;
     @Column(columnDefinition = "varchar(10)")
     private String type;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(nullable = false)
     private User user;
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     List<User> favoritedBy;
 
     public List<User> getFavoritedBy() {
