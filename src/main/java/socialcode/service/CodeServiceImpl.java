@@ -22,6 +22,7 @@ public class CodeServiceImpl implements CodeService {
 
     public Code save(Code code) {
         User user = userService.getCurrentUser();
+        System.out.println(user.getEmail());
         code.setUser(user);
         if (code.isOnProfile()) {
             Post post = new Post();
@@ -33,6 +34,12 @@ public class CodeServiceImpl implements CodeService {
         if (code.isRunnable()) {
             // TODO : move run here from controller
         }
+        codeRepository.save(code);
+        return code;
+    }
+
+    @Override
+    public Code update(Code code) {
         codeRepository.save(code);
         return code;
     }

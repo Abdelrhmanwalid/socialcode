@@ -9,6 +9,7 @@ import java.util.List;
 public interface CodeService {
 
     Code save(Code code);
+    Code update(Code code);
     Code findById(int id);
     Code fork(int id);
     Code findByPost(Post post);

@@ -49,27 +49,27 @@
         <property name="username" value="root"/>
         <property name="password" value="root"/>
     </bean>
-    <!--<bean id="mySessionFactory"-->
-          <!--class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">-->
-        <!--<property name="dataSource" ref="dataSource"/>-->
-        <!--<property name="packagesToScan">-->
-            <!--<array>-->
-                <!--<value>socialcode.model</value>-->
-            <!--</array>-->
-        <!--</property>-->
-        <!--<property name="hibernateProperties">-->
-            <!--<props>-->
-                <!--<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>-->
-                <!--<prop key="hibernate.cache.provider_class">org.hibernate.cache.internal.NoCachingRegionFactory</prop>-->
-                <!--<prop key="hibernate.search.default.directory_provider">-->
-                    <!--org.hibernate.search.store.impl.FSDirectoryProvider</prop>-->
-                <!--&lt;!&ndash;change it to be dynamic google it&ndash;&gt;-->
-                <!--<prop key="hibernate.search.default.indexBase">#{ systemProperties['user.home'] }</prop>-->
-            <!--</props>-->
-        <!--</property>-->
-    <!--</bean>-->
-    <!--<bean id="transactionManager2"-->
-          <!--class="org.springframework.orm.hibernate4.HibernateTransactionManager">-->
-        <!--<property name="sessionFactory" ref="mySessionFactory"/>-->
-    <!--</bean>-->
+    <bean id="mySessionFactory"
+          class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="packagesToScan">
+            <array>
+                <value>socialcode.model</value>
+            </array>
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                <prop key="hibernate.cache.provider_class">org.hibernate.cache.internal.NoCachingRegionFactory</prop>
+                <prop key="hibernate.search.default.directory_provider">
+                    org.hibernate.search.store.impl.FSDirectoryProvider</prop>
+                <!--change it to be dynamic google it-->
+                <prop key="hibernate.search.default.indexBase">#{ systemProperties['user.home'] }</prop>
+            </props>
+        </property>
+    </bean>
+    <bean id="transactionManager2"
+          class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="mySessionFactory"/>
+    </bean>
 </beans>

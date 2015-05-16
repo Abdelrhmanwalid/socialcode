@@ -84,8 +84,8 @@ public class RunCodeThread implements Runnable {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
 			}
-
-			IdeoneSubmissionStatus iss = null;
+            System.out.println("Running "+ code.getId());
+            IdeoneSubmissionStatus iss = null;
 			try {
 				iss = ideone.getSubmissionStatus(link);
 				code.setStatus("Running");
@@ -102,8 +102,9 @@ public class RunCodeThread implements Runnable {
 			if (status == 0) {
 				this.mState = STATE_DONE;
 				code.setStatus("Done");
-				codeService.save(code);
-			}
+                //codeService.save(code);
+                System.out.println("Done "+code.getStatus());
+            }
 			handle("echo", Ideone.translateState(status));
 		}
 
@@ -125,8 +126,8 @@ public class RunCodeThread implements Runnable {
 				handle("echo2", out);
 
 				code.setOutput(out);
-				System.out.println(out);
-				codeService.save(code);
+				codeService.update(code);
+                System.out.println("Saved");
 			}
 		} catch (Exception e) {
 			handle("error", "Auth error");
